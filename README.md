@@ -1,10 +1,4 @@
 # trip-proj
 
 
-TESTESTSETSETSET
-dfasdfasdddd
-
-
-dsfasdfasdfa
-
-test
+This branch is for shared development code.
