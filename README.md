@@ -1,5 +1,4 @@
 # trip-proj
 
 
-TESTESTSETSETSET
-dfasdfasdddd
+This is a branch for testing before moving to master and publishing.
