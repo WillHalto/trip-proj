@@ -1,8 +1,4 @@
 # trip-proj
 
 
-TESTESTSETSETSET
-dfasdfasdddd
-
-
-dsfasdfasdfa
+This is the master branch.
