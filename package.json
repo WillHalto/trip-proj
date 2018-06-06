@@ -1,0 +1,25 @@
+{
+  "name": "trip-proj",
+  "version": "1.0.0",
+  "description": "trip project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WillHalto/trip-proj.git"
+  },
+  "author": "josh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WillHalto/trip-proj/issues"
+  },
+  "homepage": "https://github.com/WillHalto/trip-proj#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "mongojs": "^2.6.0"
+  }
+}
