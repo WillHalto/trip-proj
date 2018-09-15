@@ -2,6 +2,7 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-post-login',
@@ -10,36 +11,34 @@ import { of } from 'rxjs';
 })
 export class PostLoginComponent implements OnInit {
 
-  username: string;
+  userProfile;
+  auth0;
 
-  constructor(private route: ActivatedRoute) {
-    
+  constructor(private route: ActivatedRoute, public auth: AuthService) {
+    this.auth0 = auth.auth0;
    }
 
   ngOnInit() {
-    // this.route.paramMap.pipe(
-    //   switchMap((params: ParamMap) =>
-    //     of(params.get('username'))
-    //   )
-    // ).subscribe((d) => {
-    //   this.assignUserName(d);
-
-    // });
-
-    //console.log(auth2.isSignedIn.get());
-    // this.route.params
-    // .forEach(params => {
-    //   this.username = params['username'];
-    // });
-      
-  }
-
-  assignUserName(name: string){
-    this.username=name;
+    this.getProfile();
   }
 
   ngAfterViewInit(){
 
   }
-
+  
+  private getProfile() {
+    if (!this.userProfile) {
+      var accessToken = localStorage.getItem('access_token');
+  
+      if (!accessToken) {
+        console.log('Access Token must exist to fetch profile');
+      }
+  
+      this.auth0.client.userInfo(accessToken, (function(err, profile) {
+        if (profile) {
+          this.userProfile = profile;
+        }
+      }).bind(this));
+    }
+  }
 }

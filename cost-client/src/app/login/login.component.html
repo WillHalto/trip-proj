@@ -1,26 +1,23 @@
-<!-- <div id="my-signin2"></div> -->
-<!-- <p>Here is the username: {{user}}</p>
-<nav>
-  <a routerLink="/postlogin/TEST">Heroes</a>
-</nav> -->
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Auth0 - Angular</a>
-      <br>
       <button
         class="btn btn-primary btn-margin"
         routerLink="/">
           Home
       </button>
-      <br>
+      <button
+        class="btn btn-primary btn-margin"
+        *ngIf="authService.isAuthenticated()"
+        routerLink="/postlogin">
+          Profile
+      </button>
       <button
         class="btn btn-primary btn-margin"
         *ngIf="!authService.isAuthenticated()"
         (click)="authService.login()">
           Log In
       </button>
-      <br>
       <button
         class="btn btn-primary btn-margin"
         *ngIf="authService.isAuthenticated()"

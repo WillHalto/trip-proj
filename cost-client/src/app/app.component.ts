@@ -9,7 +9,12 @@ import { AuthService } from './auth.service';
 })
 export class AppComponent {
   title = 'Cost App';
+  
   constructor(public auth: AuthService) {
     auth.handleAuthentication();
+  }
+
+  ngAfterViewInit() {
+    
   }
 }

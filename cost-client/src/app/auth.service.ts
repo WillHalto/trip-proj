@@ -7,13 +7,12 @@ import * as auth0 from 'auth0-js';
 
 @Injectable()
 export class AuthService {
-
   auth0 = new auth0.WebAuth({
     clientID: 'HnbmaQ8UkTulIuRioGG0pg0NzFs6gcN1',
     domain: 'joshandwill.auth0.com',
     responseType: 'token id_token',
     redirectUri: 'http://localhost:4200/',
-    scope: 'openid'
+    scope: 'openid profile'
   });
 
   constructor(public router: Router) {}
@@ -27,7 +26,10 @@ export class AuthService {
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = '';
         this.setSession(authResult);
-        this.router.navigate(['/']);
+        if(this.isAuthenticated())
+        {
+          this.router.navigate(['postlogin']);
+        }
       } else if (err) {
         this.router.navigate(['/']);
         console.log(err);
