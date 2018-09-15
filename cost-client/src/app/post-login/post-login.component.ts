@@ -28,7 +28,7 @@ export class PostLoginComponent implements OnInit {
   
   private getProfile() {
     if (!this.userProfile) {
-      var accessToken = localStorage.getItem('access_token');
+      let accessToken = localStorage.getItem('access_token');
   
       if (!accessToken) {
         console.log('Access Token must exist to fetch profile');
