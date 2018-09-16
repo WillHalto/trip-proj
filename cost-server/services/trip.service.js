@@ -32,13 +32,10 @@ var getTestTrips=function(){
 
      });
 
-     return tripPromise();
+     
+     return Trip.find().exec();
 };
 
-var tripPromise=function(){
-    var promise = Trip.find().exec();
-    return promise;
-}
 
 module.exports.getTestTrips=getTestTrips;
 module.exports.buildTestTrip=buildTestTrip;
