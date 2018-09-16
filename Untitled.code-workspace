@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "cost-client"
+		},
+		{
+			"path": "cost-server"
+		}
+	],
+	"settings": {}
+}

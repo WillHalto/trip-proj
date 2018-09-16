@@ -1,0 +1,15 @@
+<h3>
+  Here are the Trips:
+</h3>
+
+<table *ngIf="Trips">
+    <tr>
+        <button class=button routerLink="/newtrip">Create New</button>
+    </tr>
+    <tr *ngFor="let Trip of Trips">
+      <button class=button routerLink="/tripdetails/{{Trip.id}}">
+        {{Trip.id}}. {{Trip.title}}
+      </button>
+  </tr>
+  
+</table>

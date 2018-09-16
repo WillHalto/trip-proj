@@ -1,0 +1,5 @@
+<div *ngIf="userProfile">
+    <div>Welcome {{userProfile?.name}}!</div>
+    <img src={{userProfile?.picture}} alt="Profile Pic">
+    <app-trips></app-trips>
+</div>
