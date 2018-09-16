@@ -3,41 +3,42 @@ var router = express.Router();
 var mongoose = require('mongoose');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  //res.render('index', { title: 'Express' });
+router.get('/', function(req, res) {
+  res.redirect('/api');
+});
 
-  mongoose.connect('mongodb://yko0630:f0malhaut@ds249530.mlab.com:49530/trip_data');
+// router.get('/', function(req, res, next) {
+//   //res.render('index', { title: 'Express' });
 
-  var db = mongoose.connection;
-  db.on('error', console.error.bind(console, 'connection error:'));
-  db.once('open', function () {
+//   mongoose.connect('mongodb://yko0630:f0malhaut@ds249530.mlab.com:49530/trip_data');
+
+//   var db = mongoose.connection;
+//   db.on('error', console.error.bind(console, 'connection error:'));
+//   db.once('open', function () {
 
 
-    console.log("connected");
+//     console.log("connected");
 
-    var tripSchema = new mongoose.Schema({
-      name: String
-    });
+//     var Trip = require('../models/trip.model');
 
-    var Trip = mongoose.model('Trip', tripSchema);
+//     var testTrip = new Trip({ name: 'First test trip' });
 
-    var testTrip = new Trip({ name: 'First test trip' });
+//     testTrip.save(function (err) {
+//       if (err) return console.error(err);
+//     });
 
-    testTrip.save(function (err) {
-      if (err) return console.error(err);
-    });
+//     var tripNames;
 
-    var tripNames;
-    Trip.find(function (err, trips) {
-      if (err) return console.error(err);
-      trips.forEach(trip => tripNames = trip.name);
-      console.log(tripNames);
-      res.render('index', { title: tripNames });
-    })
+//     Trip.find(function (err, trips) {
+//       if (err) return console.error(err);
+//       trips.forEach(trip => tripNames = trip.name);
+//       console.log(tripNames);
+//         res.render('index', { title: tripNames });
+//       })
     
 
 
-  });
- });
+//   });
+//  });
 
 module.exports = router;
