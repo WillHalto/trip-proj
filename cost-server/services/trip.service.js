@@ -1,11 +1,11 @@
 //Database service for trips
-
+require('dotenv').config();
 var mongoose = require('mongoose');
 var Trip = require('../models/trip.model');
 
 var buildTestTrip=function(testTrip){
 
-    mongoose.connect('mongodb://yko0630:f0malhaut@ds249530.mlab.com:49530/trip_data');
+    mongoose.connect(process.env.MONGODB_ID);
 
     var db = mongoose.connection;
     db.on('error', console.error.bind(console, 'connection error:'));
@@ -22,7 +22,7 @@ var buildTestTrip=function(testTrip){
 
 var getTestTrips=function(){
 
-    mongoose.connect('mongodb://yko0630:f0malhaut@ds249530.mlab.com:49530/trip_data');
+    mongoose.connect(process.env.MONGODB_ID);
 
     var db = mongoose.connection;
     db.on('error', console.error.bind(console, 'connection error:'));

@@ -1,12 +1,13 @@
 //Validation middleware
 
+require('dotenv').config();
 const { OAuth2Client } = require('google-auth-library');
-const client = new OAuth2Client("872307146218-vuchuho1la6ultt5cevn1us9uk4s8hfq.apps.googleusercontent.com");
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
   
 var verifyToken=async function(req,res,next) {
     const ticket = await client.verifyIdToken({
         idToken: req.body.idtoken,
-        audience: "872307146218-vuchuho1la6ultt5cevn1us9uk4s8hfq.apps.googleusercontent.com",
+        audience: process.env.GOOGLE_CLIENT_ID,
     });
     const payload = ticket.getPayload();
     //const userid = payload['sub'];
