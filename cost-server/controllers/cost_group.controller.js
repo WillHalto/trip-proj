@@ -5,7 +5,7 @@ var TripService = require('../services/trip.service');
 
 
 var trip_get=async function(req,res){
-    var names ="";
+    let names ="";
     TripService.buildTestTrip(new Trip({ name: 'First test trip' }));
 
     let trips = await TripService.getTestTrips();
