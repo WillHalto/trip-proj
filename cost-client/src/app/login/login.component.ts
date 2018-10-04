@@ -34,8 +34,10 @@ export class LoginComponent implements OnInit {
  onSignIn(googleUser) {
    var id_token = googleUser.getAuthResponse().id_token;
    var xhr = new XMLHttpRequest();
-   xhr.open('POST', 'http://localhost:3000/auth');
+   xhr.withCredentials = true;
+   xhr.open('POST', 'http://localhost:3000/login',true);
    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+   //xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
    xhr.onload = function () {
      console.log('Signed in as: ' + xhr.responseText);
    };
