@@ -15,7 +15,6 @@ export class PostLoginComponent implements OnInit {
   auth0;
 
   constructor(private route: ActivatedRoute, public auth: AuthService) {
-    this.auth0 = auth.auth0;
    }
 
   ngOnInit() {
@@ -27,18 +26,5 @@ export class PostLoginComponent implements OnInit {
   }
   
   private getProfile() {
-    if (!this.userProfile) {
-      let accessToken = localStorage.getItem('access_token');
-  
-      if (!accessToken) {
-        console.log('Access Token must exist to fetch profile');
-      }
-  
-      this.auth0.client.userInfo(accessToken, (function(err, profile) {
-        if (profile) {
-          this.userProfile = profile;
-        }
-      }).bind(this));
     }
   }
-}
