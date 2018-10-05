@@ -6,8 +6,8 @@ var Schema = mongoose.Schema;
 
 
 var TripSchema = new Schema({
-   name: String, 
-
+    id: String,
+    title: String
 });
 
 module.exports = mongoose.model('TripModel', TripSchema );

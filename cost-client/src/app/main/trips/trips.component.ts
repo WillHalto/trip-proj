@@ -10,6 +10,7 @@ import {Trip} from '../../models/trip';
 })
 export class TripsComponent implements OnInit {
   Trips: Trip[];
+  test: any;
 
   constructor(private TripsService: TripsService, private route: ActivatedRoute) {
     this.TripsService.getTrips()

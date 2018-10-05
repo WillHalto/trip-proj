@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 @Injectable()
 export class AuthService {
 
-
   constructor(public router: Router) {}
 
   public onSignIn(googleUser) {
@@ -19,7 +18,7 @@ export class AuthService {
         console.log('Signed in');
         this.router.navigate(['postlogin']);
       }.bind(this);
-      
+
       xhr.send('idtoken=' + id_token);
    
      //  var xhr2 = new XMLHttpRequest();

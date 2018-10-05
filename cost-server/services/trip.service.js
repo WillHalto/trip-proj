@@ -32,7 +32,7 @@ var getTestTrips=function(){
 
      });
 
-     
+
      return Trip.find().exec();
 };
 

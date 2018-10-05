@@ -8,20 +8,12 @@
 
 <br>
 <div class="container">
-  <label>
-    Trip Name:
-    <input type="text" [formControl]="name">
-    <button (click)="submit()">Submit</button> 
-    <button (click)="clearName()">Clear</button>
-  </label>
-  
-  <br>
-  
+
   <form [formGroup]="newTripForm" (ngSubmit)="onSubmit()">
     
     <label>
       Trip Name:
-      <input type="text" formControlName="name" required>
+      <input type="text" formControlName="title" required>
     </label>
   
     <div formGroupName="dates">

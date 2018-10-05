@@ -28,10 +28,16 @@ router.use(async function(req,res,next){
     let date = new Date();
     const { IDTOKEN } = req.cookies;
     let payload = await verifyToken(IDTOKEN).catch(console.error);
-    if(payload['exp']>Math.round(date.getTime() / 1000)){
+    if(!payload){
+        console.log('INVALID');
+        res.status(401).send();
+    }
+    else if(payload['exp']>Math.round(date.getTime() / 1000)){
+        console.log(IDTOKEN);
         next();
     }
     else{
+        console.log('INVALID');
         res.status(401).send();
     }
 });

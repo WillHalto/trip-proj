@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Trip} from '../../models/trip';
 import { Validators,FormControl,FormGroup,FormArray,FormBuilder } from '@angular/forms';
+import { TripsService } from '../../services/trips.service';
 
 @Component({
   selector: 'app-new-trip',
@@ -21,7 +22,7 @@ export class NewTripComponent implements OnInit {
   // });
 
   newTripForm = this.fb.group({
-    name: ['', Validators.required],
+    title: ['', Validators.required],
     dates: this.fb.group({
       startDate: [''],
       endDate: ['']
@@ -33,24 +34,24 @@ export class NewTripComponent implements OnInit {
     ])
   });
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private tripService: TripsService) {
     this.newTrip = new Trip(null,null);
    }
 
   ngOnInit() {
   }
-  submit() {
-    this.newTrip.title = this.name.value;
-    console.log("A new trip called "+this.newTrip.title+" created.");
-  }
-
-  clearName() {
-    this.name.setValue('');
-  }
   
   onSubmit() {
     // TODO: Use EventEmitter with form value
     console.warn(this.newTripForm.value);
+    this.buildTrip();
+    this.tripService.addTrip(this.newTrip);
+
+  }
+
+  buildTrip(){
+    this.newTrip.title = this.newTripForm.value.title;
+    this.newTrip.id = "";
   }
 
   get invites() {
