@@ -1,10 +1,65 @@
 <h2>
   Create a new Trip
 </h2>
-<form class="well">
-  <div class="form-group textbox">
-    <input type="text" class="form-control" placeholder="Trip Title">
-  </div>
-</form>
+<!-- <form (ngSubmit)="submit()">
+    <input type="text" name="Trip Title" placeholder="Trip Title" [(ngModel)]="newTrip.title">
+    <button type="submit">Submit</button>
+</form> -->
 
-<p>{{title}}</p>
+<br>
+<div class="container">
+  <label>
+    Trip Name:
+    <input type="text" [formControl]="name">
+    <button (click)="submit()">Submit</button> 
+    <button (click)="clearName()">Clear</button>
+  </label>
+  
+  <br>
+  
+  <form [formGroup]="newTripForm" (ngSubmit)="onSubmit()">
+    
+    <label>
+      Trip Name:
+      <input type="text" formControlName="name" required>
+    </label>
+  
+    <div formGroupName="dates">
+      <label>
+        Start date:
+        <input type="date" formControlName="startDate">
+      </label>
+    
+      <label>
+        End date:
+        <input type="date" formControlName="endDate">
+      </label>
+    </div>
+  
+    <label>
+      Number of Participants:
+      <input type="number" formControlName="number">
+    </label>
+  
+    <label>
+      Going Aboard?:
+      <input type="checkbox" formControlName="isAboard">
+    </label>
+  
+    <div formArrayName="invites">
+      <h5>Who is joining?</h5> <button (click)="addInvite()">Add Friend</button>
+    
+      <div *ngFor="let invite of invites.controls; let i=index">
+        <label>
+          E-mail:
+          <input type="email" [formControlName]="i">
+        </label>
+      </div>
+    </div>
+  
+    <button type="submit" [disabled]="!newTripForm.valid">Submit</button>
+    <p>
+      Form Status: {{ newTripForm.status }}
+    </p>
+  </form>
+</div>

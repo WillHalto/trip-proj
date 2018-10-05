@@ -2,14 +2,17 @@
   Here are the Trips:
 </h3>
 
-<table *ngIf="Trips">
-    <tr>
-        <button class=button routerLink="/newtrip">Create New</button>
+<table class="table table-bordered" *ngIf="Trips">
+  <tbody>
+    <tr class="table-primary">
+        <a routerLink="/newtrip">Create New</a>
     </tr>
-    <tr *ngFor="let Trip of Trips">
-      <button class=button routerLink="/tripdetails/{{Trip.id}}">
+    <tr class="table-bordered" *ngFor="let Trip of Trips;">
+      <a [routerLink]="['/tripdetails',Trip.id]">
         {{Trip.id}}. {{Trip.title}}
-      </button>
-  </tr>
-  
+        <br>
+        {{Trip | json}}
+      </a>
+    </tr>
+  </tbody>
 </table>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import {TripsService} from '../../services/trips.service';
 import {Trip} from '../../models/trip';
 
@@ -9,8 +10,8 @@ import {Trip} from '../../models/trip';
 })
 export class TripsComponent implements OnInit {
   Trips: Trip[];
-  
-  constructor(private TripsService: TripsService) {
+
+  constructor(private TripsService: TripsService, private route: ActivatedRoute) {
     this.TripsService.getTrips()
       .subscribe(Trips => {
         this.Trips = Trips;

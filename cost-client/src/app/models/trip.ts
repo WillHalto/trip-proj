@@ -1,4 +1,5 @@
 export class Trip {
-    id: number;
-    title: string;
+    constructor(
+      public id: string,
+      public title: string) { }
   }

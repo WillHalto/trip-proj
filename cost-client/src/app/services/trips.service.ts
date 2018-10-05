@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Http, Headers} from '@angular/http';
+import {Http} from '@angular/http';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -13,6 +13,11 @@ export class TripsService {
 
   getTrips(){
     return this.http.get('https://jsonplaceholder.typicode.com/todos')
+            .pipe(map(res => res.json()));
+  }
+
+  getTrip(index: string){
+    return this.http.get('https://jsonplaceholder.typicode.com/todos/'+index)
             .pipe(map(res => res.json()));
   }
 }
