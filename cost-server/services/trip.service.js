@@ -21,7 +21,6 @@ var buildTestTrip=function(testTrip){
 
 
 var getTestTrips=function(){
-
     mongoose.connect(process.env.MONGODB_ID);
 
     var db = mongoose.connection;
