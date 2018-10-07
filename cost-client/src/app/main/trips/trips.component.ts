@@ -10,16 +10,24 @@ import {Trip} from '../../models/trip';
 })
 export class TripsComponent implements OnInit {
   Trips: Trip[];
-  test: any;
-
+  selectedTrip: Trip = null;
+  newTripSelected = true;
   constructor(private TripsService: TripsService, private route: ActivatedRoute) {
+   
+  }
+
+  ngOnInit() { 
     this.TripsService.getTrips()
-      .subscribe(Trips => {
-        this.Trips = Trips;
-      });
+    .subscribe(Trips => {
+      this.Trips = Trips;
+    });
   }
-
-  ngOnInit() {
+  onSelect(trip: Trip): void{
+    this.selectedTrip = trip;
+    this.newTripSelected = false;
   }
-
+  onCreateNewTrip(){
+    this.selectedTrip = null;
+    this.newTripSelected = true;
+  }
 }

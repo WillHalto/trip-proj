@@ -1,4 +1,39 @@
-.button{
-    width: 100%;
-    text-align: left;
-}
+/* tripsComponent's private CSS styles */
+.selected {
+    background-color: #CFD8DC !important;
+    color: white;
+  }
+  .trips {
+    margin: 0 0 2em 0;
+    list-style-type: none;
+    padding: 0;
+    width: 15em;
+  }
+  .trips li {
+    cursor: pointer;
+    position: relative;
+    left: 0;
+    background-color: #EEE;
+    margin: .5em;
+    padding: .3em 1rem;
+    border-radius: 4px;
+  }
+  .trips li.selected:hover {
+    background-color: #BBD8DC !important;
+    color: white;
+  }
+  .trips li:hover {
+    color: #607D8B;
+    background-color: #DDD;
+    left: .1em;
+  }
+  .trips .text {
+    position: relative;
+    top: -3px;
+  }
+  .trip-info-container {
+    width: 50%;
+  }
+  .trips-container{
+    width: 50%;
+  }

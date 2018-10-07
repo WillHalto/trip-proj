@@ -11,15 +11,6 @@ import { TripsService } from '../../services/trips.service';
 export class NewTripComponent implements OnInit {
   newTrip: Trip;
   name = new FormControl('');
-  // newTripForm = new FormGroup({
-  //   name: new FormControl(''),
-  //   dates: new FormGroup({
-  //       startDate: new FormControl(''),
-  //       endDate: new FormControl(''),
-  //     }),
-  //   number: new FormControl(''),
-  //   isAboard: new FormControl('')
-  // });
 
   newTripForm = this.fb.group({
     title: ['', Validators.required],
@@ -46,7 +37,6 @@ export class NewTripComponent implements OnInit {
     console.warn(this.newTripForm.value);
     this.buildTrip();
     this.tripService.addTrip(this.newTrip);
-
   }
 
   buildTrip(){

@@ -4,7 +4,6 @@ var mongoose = require('mongoose');
 var Trip = require('../models/trip.model');
 
 var buildTestTrip=function(testTrip){
-
     mongoose.connect(process.env.MONGODB_ID);
 
     var db = mongoose.connection;
@@ -20,7 +19,19 @@ var buildTestTrip=function(testTrip){
 };
 
 
-var getTestTrips=function(){
+var getTrip=function(id){
+    mongoose.connect(process.env.MONGODB_ID);
+
+    var db = mongoose.connection;
+    db.on('error', console.error.bind(console, 'connection error:'));
+    db.once('open', function () {
+        console.log("connected");
+     });
+     return Trip.find().exec();
+};
+
+
+var getTrips=function(){
     mongoose.connect(process.env.MONGODB_ID);
 
     var db = mongoose.connection;
@@ -28,13 +39,11 @@ var getTestTrips=function(){
     db.once('open', function () {
 
         console.log("connected");
-
      });
-
-
      return Trip.find().exec();
 };
 
 
-module.exports.getTestTrips=getTestTrips;
+module.exports.getTrip=getTrip;
+module.exports.getTrips=getTrips;
 module.exports.buildTestTrip=buildTestTrip;

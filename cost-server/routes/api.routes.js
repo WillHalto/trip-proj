@@ -9,8 +9,9 @@ var router = express.Router();
 var costGroupController = require('../controllers/cost_group.controller');
 
 //routes
-router.get('/trips',costGroupController.trip_get);
-router.post('/newtrip',costGroupController.trip_add);
+router.get('/trip/:id',costGroupController.getTrip);
+router.get('/trips',costGroupController.getTrips);
+router.post('/newtrip',costGroupController.addTrip);
 
 
 module.exports=router;

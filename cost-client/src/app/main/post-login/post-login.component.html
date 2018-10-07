@@ -1,5 +1,8 @@
 <div>
-    <div>Welcome {{userProfile?.name}}!</div>
-    <img class='img-thumbnail' src={{userProfile?.picture}} alt="Profile Pic">
-    <app-trips></app-trips>
+    <div>Welcome {{userProfile?.getName()}}!</div>
+    <img class='img-thumbnail' src={{userProfile?.getImageUrl()}} alt="Profile Pic">
+    
+    <div class='container'>
+        <app-trips></app-trips>
+    </div>
 </div>

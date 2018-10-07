@@ -1,6 +1,6 @@
-<h1>{{currentTripTitle}}</h1>
-<ul>
-  <li>ID: {{currentTripID}}</li>
-  <li>Completed: {{currentTrip?.completed}}</li>
-  <li>User ID: {{currentTrip?.userId}}</li>
-</ul>
+<div *ngIf="currentTrip">
+  <h2>{{currentTrip.title | uppercase}}</h2>
+  <ul>
+    <li>ID: {{currentTrip.id}}</li>
+  </ul>
+</div>

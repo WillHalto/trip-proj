@@ -9,9 +9,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  user: string;
-
+  user: any;
   constructor(private authService:AuthService,private ngZone:NgZone,private http:Http) { }
 
   ngOnInit() {
@@ -27,12 +25,9 @@ export class LoginComponent implements OnInit {
       'theme': 'light',
       'onsuccess':  googleUser => this.ngZone.run(() => this.authService.onSignIn(googleUser))
     });
-    //this.assignUser("TEST");
-    //this.router.navigate(['postlogin',this.user]);
   }
 
-  assignUser(s:string){
-    this.user=s;
+  getUser(){
+    return this.user;
   }
-
 }
