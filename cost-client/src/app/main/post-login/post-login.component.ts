@@ -1,9 +1,6 @@
-import { Component, OnInit, NgZone } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { LoginComponent} from'../../login/login.component';
 @Component({
   selector: 'app-post-login',
   templateUrl: './post-login.component.html',
@@ -16,7 +13,7 @@ export class PostLoginComponent implements OnInit {
    }
 
   ngOnInit() {
-    //this.userProfile = getUser().getBasicProfile();
+    //this.userProfile = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
   }
 
   ngAfterViewInit(){
