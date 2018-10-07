@@ -36,7 +36,16 @@ export class AuthService {
   public onSignOut(): void {
     // Go back to the home route
     // TODO: clear cookie
-    this.router.navigate(['/']);
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+    xhr.open('POST', 'http://localhost:3000/logout',true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    xhr.onload = function () {
+      console.log('Signed out');
+      this.router.navigate(['/']);
+    }.bind(this);
+    xhr.send('idtoken=');
   }
 
 }

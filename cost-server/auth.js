@@ -22,6 +22,12 @@ router.post('/login',async function(req,res,next){
     }
 });
 
+router.post('/logout',async function(req,res,next){
+    setHeaders(req,res);
+    res.cookie("IDTOKEN", "", {httpOnly:true});
+    res.send();
+});
+
 //Everything other than login post will use this
 router.use(async function(req,res,next){
     setHeaders(req,res);
