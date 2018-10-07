@@ -1,7 +1,6 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import {Http, Headers} from '@angular/http';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -9,11 +8,10 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  user: gapi.auth2.GoogleUser;
+  userProfile: gapi.auth2.BasicProfile;
   constructor(private authService:AuthService,private ngZone:NgZone,private http:Http) { }
 
   ngOnInit() {
-
   }
 
   ngAfterViewInit() {
@@ -28,16 +26,13 @@ export class LoginComponent implements OnInit {
   }
 
   hanldeSuccess(googleUser: gapi.auth2.GoogleUser){
-    this.user = googleUser;
-    this.authService.onSignIn(this.user);
-  }
-
-  getUser(){
-    return this.user;
+    this.userProfile = googleUser.getBasicProfile();
+    this.authService.onSignIn(googleUser);
   }
 
   logout(){
     gapi.auth2.getAuthInstance().disconnect();
+    this.userProfile=null;
     this.authService.onSignOut();
   }
 }

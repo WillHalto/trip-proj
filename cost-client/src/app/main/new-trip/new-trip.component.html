@@ -30,7 +30,7 @@
   </label>
 
   <div formArrayName="invites">
-    <h5>Who is joining?</h5> <button (click)="addInvite()">Add Friend</button>
+    <h5>Who is joining?</h5> <button type="button" (click)="addInvite()">Add Friend</button>
   
     <div *ngFor="let invite of invites.controls; let i=index">
       <label>

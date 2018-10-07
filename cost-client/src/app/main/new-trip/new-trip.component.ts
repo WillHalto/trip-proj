@@ -34,7 +34,7 @@ export class NewTripComponent implements OnInit {
   
   onSubmit() {
     // TODO: Use EventEmitter with form value
-    console.warn(this.newTripForm.value);
+    console.log(this.newTripForm.value);
     this.buildTrip();
     this.tripService.addTrip(this.newTrip);
   }
