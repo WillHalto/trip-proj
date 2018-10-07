@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  user: any;
+  user: gapi.auth2.GoogleUser;
   constructor(private authService:AuthService,private ngZone:NgZone,private http:Http) { }
 
   ngOnInit() {
@@ -23,8 +23,13 @@ export class LoginComponent implements OnInit {
       'height': 50,
       'longtitle': true,
       'theme': 'light',
-      'onsuccess':  googleUser => this.ngZone.run(() => this.authService.onSignIn(googleUser))
+      'onsuccess':  googleUser => this.ngZone.run(() => this.hanldeSuccess(googleUser))
     });
+  }
+
+  hanldeSuccess(googleUser: gapi.auth2.GoogleUser){
+    this.user = googleUser;
+    this.authService.onSignIn(this.user);
   }
 
   getUser(){
