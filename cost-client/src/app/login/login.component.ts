@@ -35,4 +35,9 @@ export class LoginComponent implements OnInit {
   getUser(){
     return this.user;
   }
+
+  logout(){
+    gapi.auth2.getAuthInstance().disconnect();
+    this.authService.onSignOut();
+  }
 }

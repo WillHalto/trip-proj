@@ -1,10 +1,10 @@
 
-<div class="row">
+<div class="row" *ngIf="Trips">
   <div class="trips-container">
     <h2>
       Here are your trips:
     </h2>
-    <ul class="trips" *ngIf="Trips">
+    <ul class="trips" >
       <li [class.selected]="newTripSelected" 
       (click)="onCreateNewTrip()">
         Create New
@@ -17,7 +17,7 @@
     </ul>
   </div>
   <div class="trip-info-container">
-    <app-new-trip *ngIf="selectedTrip===null"></app-new-trip>
+    <app-new-trip *ngIf="newTripSelected"></app-new-trip>
     <app-trip-details *ngIf="selectedTrip" [currentTrip]="selectedTrip" ></app-trip-details>
   </div>
 </div>

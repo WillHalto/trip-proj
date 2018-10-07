@@ -33,8 +33,9 @@ export class AuthService {
   
   }
 
-  public logout(): void {
+  public onSignOut(): void {
     // Go back to the home route
+    // TODO: clear cookie
     this.router.navigate(['/']);
   }
 

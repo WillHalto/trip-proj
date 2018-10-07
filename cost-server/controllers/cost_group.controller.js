@@ -5,19 +5,9 @@ var TripService = require('../services/trip.service');
 
 
 var getTrips=async function(req,res){
-    let names ="";
-  //  TripService.buildTestTrip(new Trip({ name: 'First test trip' }));
-
     let trips = await TripService.getTrips();
-    
-    //trips.forEach(trip => names += " "+trip.name);
     res.send(trips);
     
-};
-
-var getTrip=async function(req,res){
-    console.log("get a trip");
-    res.send("get a trip");
 };
 
 var addTrip=async function(req,res){
@@ -28,5 +18,4 @@ var addTrip=async function(req,res){
 
 
 module.exports.getTrips=getTrips;
-module.exports.getTrip=getTrip;
 module.exports.addTrip=addTrip;

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 import {TripsService} from '../../services/trips.service';
 import {Trip} from '../../models/trip';
 
@@ -11,16 +11,23 @@ import {Trip} from '../../models/trip';
 export class TripsComponent implements OnInit {
   Trips: Trip[];
   selectedTrip: Trip = null;
-  newTripSelected = true;
-  constructor(private TripsService: TripsService, private route: ActivatedRoute) {
+  newTripSelected = false;
+  constructor(private TripsService: TripsService, private route: ActivatedRoute, public router: Router) {
    
   }
 
   ngOnInit() { 
     this.TripsService.getTrips()
-    .subscribe(Trips => {
+    .subscribe(
+      Trips => {
       this.Trips = Trips;
-    });
+      },
+      error => {
+        console.log(error);
+        alert("Please log in first.")
+        this.router.navigate(['/']);
+      },
+    );
   }
   onSelect(trip: Trip): void{
     this.selectedTrip = trip;

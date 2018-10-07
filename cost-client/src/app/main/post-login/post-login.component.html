@@ -1,7 +1,9 @@
-<div>
-    <div>Welcome {{userProfile?.getName()}}!</div>
-    <img class='img-thumbnail' src={{userProfile?.getImageUrl()}} alt="Profile Pic">
-    
+<!-- <div *ngIf={{userProfile?.isSignedIn()}}> -->
+<div >
+    <div class='userInfo' *ngIf="userProfile">
+            <div>Welcome {{userProfile?.getName()}}!</div>
+            <img class='img-thumbnail' src={{userProfile?.getImageUrl()}} alt="Profile Pic">
+    </div>
     <div class='container'>
         <app-trips></app-trips>
     </div>
