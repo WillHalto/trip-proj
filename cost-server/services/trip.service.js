@@ -10,12 +10,13 @@ var addTrip=function(newTrip){
     db.on('error', console.error.bind(console, 'connection error:'));
     db.once('open', function () {
 
-        console.log("connected");
+        console.log("addTrip");
 
         newTrip.save(function (err) {
             if (err) return console.error(err);
         });
      });
+     return newTrip.id;
 };
 
 
@@ -26,7 +27,7 @@ var getTrips=function(){
     db.on('error', console.error.bind(console, 'connection error:'));
     db.once('open', function () {
 
-        console.log("connected");
+        console.log("getTrips");
      });
      return Trip.find().exec();
 };
