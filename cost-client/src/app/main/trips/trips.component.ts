@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import { Router } from "@angular/router";
 import { TripsService } from "../../services/trips.service";
 import { Trip } from "../../models/trip";
 
@@ -12,11 +12,7 @@ export class TripsComponent implements OnInit {
   Trips: Trip[];
   selectedTrip: Trip = null;
   newTripSelected = false;
-  constructor(
-    private TripsService: TripsService,
-    private route: ActivatedRoute,
-    public router: Router
-  ) {}
+  constructor(private TripsService: TripsService, public router: Router) {}
 
   ngOnInit() {
     this.TripsService.getTrips().subscribe(

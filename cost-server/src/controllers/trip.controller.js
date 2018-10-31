@@ -8,18 +8,11 @@ var getTrips = async function(req, res) {
   res.send(trips);
 };
 
-var TEST = async function(req, res) {
-  res.send("TEST");
-};
-
 var addTrip = async function(req, res) {
-  console.log("add a trip");
   let trip = new Trip(req.body);
-  console.log(trip.title);
   let id = await TripService.addTrip(trip);
-  res.status(200).send();
+  res.status(200).send(id);
 };
 
 module.exports.getTrips = getTrips;
 module.exports.addTrip = addTrip;
-module.exports.TEST = TEST;

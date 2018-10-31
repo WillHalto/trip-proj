@@ -1,26 +1,40 @@
-//Validation middleware
-
 require("dotenv").config();
 var express = require("express");
 var router = express.Router();
 
+/**
+ * Google OAUTH 2 client used to authenticat IDTOKEN from client
+ */
 const { OAuth2Client } = require("google-auth-library");
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
-router.options("/*", function(req, res, next){
-  setHeaders(req,res);
+/**
+ * Helper to set the headers for the response
+ * @param req Request from the client
+ * @param res Response to send back
+ */
+var setHeaders = function(req, res) {
+  res.header("Access-Control-Allow-Origin", req.headers.origin);
+  res.header("Access-Control-Allow-Credentials", true);
+  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, Accept, Content-Type, Authorization, Content-Length, X-Requested-With"
+  );
+};
+
+/**
+ * Allow content types, credentials, methods for preflight OPTIONS request
+ * Needed to enable CORS
+ */
+router.options("/*", function(req, res, next) {
+  setHeaders(req, res);
   res.status(200).send();
 });
 
-//Helper to set the headers for the response
-var setHeaders = function(req, res) {
-  res.header('Access-Control-Allow-Origin', req.headers.origin);
-  res.header("Access-Control-Allow-Credentials", true);
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Origin, Accept, Content-Type, Authorization, Content-Length, X-Requested-With');
-};
-
-//The initial login, sets the cookie with google jwt
+/**
+ * The initial login, sets the cookie with google jwt
+ */
 router.post("/login", async function(req, res, next) {
   setHeaders(req, res);
   let date = new Date();
@@ -33,13 +47,18 @@ router.post("/login", async function(req, res, next) {
   }
 });
 
+/**
+ * Log out, clear cookie
+ */
 router.post("/logout", async function(req, res, next) {
   setHeaders(req, res);
   res.clearCookie("IDTOKEN", { expires: new Date(0), httpOnly: true });
-  res.send();
+  res.status(200).send();
 });
 
-//Everything other than login/logout post will use this
+/**
+ * All other requests use this, checks for IDTOKEN and verifies with google.
+ */
 router.use(async function(req, res, next) {
   setHeaders(req, res);
   let date = new Date();
@@ -54,15 +73,16 @@ router.use(async function(req, res, next) {
   }
 });
 
-//Verify the id token with google api
+/**
+ * Verify IDTOKEN passed in cookie with google oauth client
+ * @param token The IDTOKEN included in the request cookie
+ */
 var verifyToken = async function(token) {
   const ticket = await client.verifyIdToken({
     idToken: token,
     audience: process.env.GOOGLE_CLIENT_ID
   });
   const payload = ticket.getPayload();
-  //const userid = payload['sub'];
-  //console.log(payload['email']);
   return payload;
 };
 
