@@ -5,7 +5,9 @@ var Schema = mongoose.Schema;
 
 var CostSchema = new Schema({
   id: String,
-  amount: Number
+  amount: Number,
+  paidBy: String, //ID of member who paid the cost
+  participants: [String] //ID array of members who this cost applies to
 });
 
 var MemberSchema = new Schema({
