@@ -11,7 +11,7 @@ export class TripsService {
 
   getTrips() {
     return this.http
-      .get<Trip[]>("http://localhost:3000/api/getTrips", {
+      .get<Trip[]>("/api/getTrips", {
         withCredentials: true
       })
       .pipe(map(res => res));
@@ -19,7 +19,7 @@ export class TripsService {
 
   addTrip(newTrip: Trip) {
     return this.http
-      .post("http://localhost:3000/api/addTrip", JSON.stringify(newTrip), {
+      .post("/api/addTrip", JSON.stringify(newTrip), {
         withCredentials: true,
         headers: new HttpHeaders().set("Content-Type", "application/json")
       })

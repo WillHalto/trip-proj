@@ -5,14 +5,14 @@ import { Validators,FormControl,FormGroup,FormArray,FormBuilder } from '@angular
 import { TripsService } from '../../services/trips.service';
 import * as uuid from 'uuid';
 @Component({
-  selector: 'app-new-trip',
-  templateUrl: './new-trip.component.html',
-  styleUrls: ['./new-trip.component.css']
+  selector: "app-new-trip",
+  templateUrl: "./new-trip.component.html",
+  styleUrls: ["./new-trip.component.css"]
 })
 
 export class NewTripComponent implements OnInit {
   newTrip: Trip;
-  name = new FormControl('');
+  name = new FormControl("");
 
   newTripForm = this.fb.group({
     title: ['', Validators.required],
