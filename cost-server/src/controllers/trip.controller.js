@@ -24,7 +24,7 @@ var DDDgetTrips = async function(req, res) {
 var addTrip = async function(req, res) {
   let trip = new Model.Trip(req.body);
   let id = await TripService.addTrip(trip);
-  res.status(200).send(id);
+  res.status(200).send({ id });
 };
 
 var addCost = async function(req, res) {};

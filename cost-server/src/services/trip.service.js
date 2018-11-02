@@ -8,7 +8,10 @@ var Models = require("../models/trip.model");
  * @param newTrip The Trip model to save to the database.
  */
 var addTrip = async function(newTrip) {
-  mongoose.connect(process.env.MONGODB_ID);
+  mongoose.connect(
+    process.env.MONGODB_ID,
+    { useNewUrlParser: true }
+  );
   var db = mongoose.connection;
   db.on("error", console.error.bind(console, "connection error:"));
   db.once("open", function() {
