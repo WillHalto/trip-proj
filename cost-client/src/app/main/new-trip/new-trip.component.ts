@@ -21,7 +21,7 @@ export class NewTripComponent implements OnInit {
 
   newTripForm = this.fb.group({
     title: ["", Validators.required],
-    members: this.fb.array([this.fb.control("")])
+    members: this.fb.array([])
   });
 
   constructor(private fb: FormBuilder, private tripService: TripsService) {}

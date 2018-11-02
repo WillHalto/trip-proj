@@ -30,7 +30,7 @@
   </label>
  -->
   <div formArrayName="members">
-    <h5>Who is joining?</h5> <button type="button" (click)="addInvite()">Add member</button>
+    <h5>Who is joining?</h5>
   
     <div *ngFor="let member of members.controls; let i=index">
       <label>
@@ -39,7 +39,9 @@
       </label>
     </div>
   </div>
-
+  <button type="button" (click)="addInvite()">Add member</button>
+  <br>
+  <br>
   <button type="submit" [disabled]="!newTripForm.valid">Submit</button>
   <p>
     Form Status: {{ newTripForm.status }}
