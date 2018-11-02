@@ -29,7 +29,7 @@ var TripSchema = new Schema({
   title: String,
   owner: MemberSchema,
   members: [MemberSchema],
-  costCollection: [CostSchema]
+  expenses: [CostSchema]
 });
 
 module.exports.Trip = mongoose.model("TripModel", TripSchema);

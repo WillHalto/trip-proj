@@ -1,6 +1,6 @@
 //Trip controller
 
-var Trip = require("../models/trip.model");
+var Model = require("../models/trip.model");
 var TripService = require("../services/trip.service");
 
 /**
@@ -22,7 +22,7 @@ var DDDgetTrips = async function(req, res) {
  * Adds a trip for the given user
  */
 var addTrip = async function(req, res) {
-  let trip = new Trip(req.body);
+  let trip = new Model.Trip(req.body);
   let id = await TripService.addTrip(trip);
   res.status(200).send(id);
 };
