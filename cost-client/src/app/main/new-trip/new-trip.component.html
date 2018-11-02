@@ -6,7 +6,7 @@
     Trip Name:
     <input type="text" formControlName="title" required>
   </label>
-
+<!-- 
   <div formGroupName="dates">
     <label>
       Start date:
@@ -28,14 +28,14 @@
     Going Aboard?:
     <input type="checkbox" formControlName="isAboard">
   </label>
-
-  <div formArrayName="invites">
-    <h5>Who is joining?</h5> <button type="button" (click)="addInvite()">Add Friend</button>
+ -->
+  <div formArrayName="members">
+    <h5>Who is joining?</h5> <button type="button" (click)="addInvite()">Add member</button>
   
-    <div *ngFor="let invite of invites.controls; let i=index">
+    <div *ngFor="let member of members.controls; let i=index">
       <label>
-        E-mail:
-        <input type="email" [formControlName]="i">
+        Name:
+        <input type="name" [formControlName]="i">
       </label>
     </div>
   </div>
