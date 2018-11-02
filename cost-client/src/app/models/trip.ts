@@ -1,5 +1,11 @@
+import {Expense} from "./expense";
+import {Member} from "./member";
+
 export class Trip {
     constructor(
       public id: string,
-      public title: string) { }
+      public title: string,
+      public members: Member[],
+      public expenses?: Expense[]
+      ) { }
   }
