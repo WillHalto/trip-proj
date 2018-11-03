@@ -34,9 +34,9 @@ export class NewTripComponent implements OnInit {
     this.buildTrip();
     this.tripService.addTrip(this.newTrip)
       .subscribe(
-        Trip => {
+        trip=> {
           console.log("successfully added the trip");
-          this.newTrip.owner = Trip.toString;
+          this.newTrip.owner = (trip as Trip).owner;
           this.tripAddedEventEmitter.emit(this.newTrip);
         },
         error => {

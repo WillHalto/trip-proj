@@ -13,6 +13,7 @@ export class TripDetailsComponent implements OnInit {
   @Input()
   currentTrip: Trip;
   isAddingExpense: boolean = false;
+  
   constructor(
   ) {}
 
