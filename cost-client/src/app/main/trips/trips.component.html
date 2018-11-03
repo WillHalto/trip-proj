@@ -17,7 +17,7 @@
     </ul>
   </div>
   <div class="trip-info-container">
-    <app-new-trip *ngIf="newTripSelected"></app-new-trip>
+    <app-new-trip *ngIf="newTripSelected" (tripAddedEventEmitter)="onAddedNewTrip($event)"></app-new-trip>
     <app-trip-details *ngIf="selectedTrip" [currentTrip]="selectedTrip" ></app-trip-details>
   </div>
 </div>

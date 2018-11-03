@@ -34,4 +34,10 @@ export class TripsComponent implements OnInit {
     this.selectedTrip = null;
     this.newTripSelected = true;
   }
+
+  onAddedNewTrip(newTrip: Trip): void {
+    this.Trips.push(newTrip);
+    this.selectedTrip = newTrip;
+    this.newTripSelected = false;
+  }
 }

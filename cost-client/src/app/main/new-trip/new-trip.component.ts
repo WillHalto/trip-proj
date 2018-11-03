@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, EventEmitter, Output } from "@angular/core";
 import { Trip } from "../../models/trip";
 import { Member } from "../../models/member";
 import {
@@ -23,8 +23,10 @@ export class NewTripComponent implements OnInit {
     title: ["", Validators.required],
     members: this.fb.array([])
   });
+  @Output() tripAddedEventEmitter = new EventEmitter<Trip>();
 
-  constructor(private fb: FormBuilder, private tripService: TripsService) {}
+  constructor(private fb: FormBuilder, private tripService: TripsService) {
+  }
 
   ngOnInit() {}
 
@@ -32,8 +34,15 @@ export class NewTripComponent implements OnInit {
     this.buildTrip();
     let a = this.tripService.addTrip(this.newTrip)
       .subscribe(
-      r => {console.log("success")},
-      error => console.log(error));
+        r => {
+          console.log("successfully added the trip");
+          this.tripAddedEventEmitter.emit(this.newTrip);
+        },
+        error => {
+          console.log(error);
+          alert("Something went wrong.");
+        }
+      )
   }
 
   buildTrip() {
