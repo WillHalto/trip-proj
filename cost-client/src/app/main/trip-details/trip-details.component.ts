@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { Router, ActivatedRoute, ParamMap } from "@angular/router";
 import { TripsService } from "../../services/trips.service";
 import { ExpenseService } from "../../services/expense.service";
-import { MemberService } from "../../services/member.service";
 import { Trip } from "../../models/trip";
 import { Member } from "src/app/models/member";
 import { Expense } from "src/app/models/expense";
@@ -24,7 +23,6 @@ export class TripDetailsComponent implements OnInit {
 
   constructor(
     private tripService: TripsService,
-    private memberService: MemberService,
     private expenseService: ExpenseService
   ) {}
 
@@ -32,6 +30,14 @@ export class TripDetailsComponent implements OnInit {
 
   ngOnChanges() {
     this.isAddingExpense = false;
+    this.isAddingMember = false;
+  }
+
+  addMember() {
+    this.isAddingMember = true;
+  }
+
+  removeMember() {
     this.isAddingMember = false;
   }
 
@@ -44,17 +50,6 @@ export class TripDetailsComponent implements OnInit {
 
   removeExpense() {
     console.log("Removing expense");
-  }
-
-  addMember() {
-    console.log("Adding member");
-    this.isAddingMember = true;
-    let newMember: Member = new Member(null);
-    this.memberService.addMember(newMember);
-  }
-
-  removeMember() {
-    console.log("Removing member");
   }
 
   deleteTrip() {

@@ -1,19 +1,19 @@
 <div *ngIf="currentTrip">
   <h2>{{currentTrip.title | uppercase}}</h2>
-  
+
   <div class=members>
     <h4>Members</h4>
     <li>{{currentTrip.owner.name}}</li>
     <li *ngFor="let member of currentTrip.members">
       {{member.name}}
-      <button class=button2 type="button" (click)="removeMember()">Remove</button>
+      <button type="button" (click)="removeMember()">Remove</button>
     </li>
     <button type="button" (click)="addMember()">Add member</button>
     <div *ngIf=isAddingMember>
-        <app-new-member></app-new-member>
+      <app-new-member></app-new-member>
     </div>
   </div>
-  
+
   <br>
 
   <div class=expenses>
@@ -23,7 +23,7 @@
       {{expense.amount}}
       <button type="button" (click)="removeExpense()">Remove</button>
     </li>
-  
+
     <button type="button" (click)="addExpense()">Add expense</button>
     <div *ngIf=isAddingExpense>
       <app-new-expense></app-new-expense>
