@@ -6,7 +6,7 @@
     <li>{{currentTrip.owner.name}}</li>
     <li *ngFor="let member of currentTrip.members">
       {{member.name}}
-      <button type="button" (click)="removeMember()">Remove</button>
+      <button type="button" (click)="removeMember(member)">Remove</button>
     </li>
     <button type="button" (click)="addMember()">Add member</button>
     <div *ngIf=isAddingMember>

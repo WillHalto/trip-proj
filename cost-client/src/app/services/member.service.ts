@@ -19,9 +19,13 @@ export class MemberService {
     );
   }
 
-  deleteMember(member: Member) {
-    return this.http.post("/api/deleteMember", member, {
-      withCredentials: true
-    });
+  deleteMember(currentTrip: Trip, member: Member) {
+    return this.http.post(
+      "/api/deleteMember",
+      { trip: currentTrip, member: member },
+      {
+        withCredentials: true
+      }
+    );
   }
 }
