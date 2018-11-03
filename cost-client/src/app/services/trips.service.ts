@@ -18,8 +18,9 @@ export class TripsService {
   }
 
   addTrip(newTrip: Trip) {
+    
     return this.http
-      .post("/api/addTrip", newTrip, {
+      .post("/api/addTrip", { trip: newTrip }, {
         withCredentials: true
       })
   }

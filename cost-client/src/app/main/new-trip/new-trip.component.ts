@@ -17,7 +17,6 @@ import * as uuid from "uuid";
 })
 export class NewTripComponent implements OnInit {
   newTrip: Trip;
-  name = new FormControl("");
 
   newTripForm = this.fb.group({
     title: ["", Validators.required],
