@@ -3,23 +3,34 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
-var CostSchema = new Schema({
-  id: String,
-  amount: Number,
-  paidBy: String, //ID of member who paid the cost
-  participants: [String] //ID array of members who this cost applies to
-});
-
+/**
+ * A single trip member.
+ */
 var MemberSchema = new Schema({
   id: String,
   name: String
 });
 
+/**
+ * A cost incurred on the trip, paid by one member and applying to some set of the total members.
+ */
+var CostSchema = new Schema({
+  id: String,
+  amount: Number,
+  paidBy: MemberSchema, //Member who paid the cost
+  participants: [MemberSchema] //Array of members who this cost applies to
+});
+
+/**
+ * The trip, includes the cost and member info.
+ */
 var TripSchema = new Schema({
   id: String,
   title: String,
+  owner: MemberSchema,
   members: [MemberSchema],
-  costCollection: [CostSchema]
+  expenses: [CostSchema]
 });
 
-module.exports = mongoose.model("TripModel", TripSchema);
+module.exports.Trip = mongoose.model("TripModel", TripSchema);
+module.exports.Member = mongoose.model("MemberModel", MemberSchema);

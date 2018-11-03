@@ -61,11 +61,6 @@ var verifyToken = async function(token) {
 
 module.exports = router;
 
-/**
- * Helper to set the headers for the response
- * @param req Request from the client
- * @param res Response to send back
- */
 // var setHeaders = function(req, res) {
 //   res.header("Access-Control-Allow-Origin", req.headers.origin);
 //   res.header("Access-Control-Allow-Credentials", true);
