@@ -7,14 +7,13 @@ import {
   FormBuilder
 } from "@angular/forms";
 @Component({
-  selector: 'app-new-expense',
-  templateUrl: './new-expense.component.html',
-  styleUrls: ['./new-expense.component.css']
+  selector: 'app-new-member',
+  templateUrl: './new-member.component.html',
+  styleUrls: ['./new-member.component.css']
 })
-export class NewExpenseComponent implements OnInit {
-  newExpenseForm = this.fb.group({
-    title: ["", Validators.required],
-    amount: ["", Validators.required]
+export class NewMemberComponent implements OnInit {
+  newMemberForm = this.fb.group({
+    name: ["", Validators.required]
   });
   constructor(private fb: FormBuilder) { }
 

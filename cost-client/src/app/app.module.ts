@@ -12,6 +12,7 @@ import { TripsComponent } from "./main/trips/trips.component";
 import { NewTripComponent } from "./main/new-trip/new-trip.component";
 import { TripDetailsComponent } from "./main/trip-details/trip-details.component";
 import { NewExpenseComponent } from './main/new-expense/new-expense.component';
+import { NewMemberComponent } from './main/new-member/new-member.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { NewExpenseComponent } from './main/new-expense/new-expense.component';
     TripsComponent,
     NewTripComponent,
     TripDetailsComponent,
-    NewExpenseComponent
+    NewExpenseComponent,
+    NewMemberComponent
   ],
   imports: [
     BrowserModule,

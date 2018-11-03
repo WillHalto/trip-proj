@@ -23,4 +23,10 @@ export class TripsService {
         withCredentials: true
       })
   }
+
+  deleteTrip(trip: Trip) {
+    return this.http.post("/api/deleteTrip", trip, {
+      withCredentials: true
+    })
+  }
 }

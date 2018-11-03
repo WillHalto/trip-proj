@@ -1,18 +1,36 @@
 <div *ngIf="currentTrip">
   <h2>{{currentTrip.title | uppercase}}</h2>
-  <h4>Members</h4>
+  
+  <div class=members>
+    <h4>Members</h4>
     <li>{{currentTrip.owner.name}}</li>
     <li *ngFor="let member of currentTrip.members">
       {{member.name}}
+      <button class=button2 type="button" (click)="removeMember()">Remove</button>
     </li>
-  <h4 *ngIf="currentTrip.expenses?.length">Expense</h4>
+    <button type="button" (click)="addMember()">Add member</button>
+    <div *ngIf=isAddingMember>
+        <app-new-member></app-new-member>
+    </div>
+  </div>
+  
+  <br>
+
+  <div class=expenses>
+    <h4>Expense</h4>
+    <p *ngIf="!currentTrip.expenses?.length">There is no expense for this trip yet.</p>
     <li *ngFor="let expense of currentTrip.expenses">
       {{expense.amount}}
+      <button type="button" (click)="removeExpense()">Remove</button>
     </li>
   
-  <button type="button" (click)="addExpense()">Add expense</button>
-
-  <div *ngIf=isAddingExpense>
-    <app-new-expense></app-new-expense>
+    <button type="button" (click)="addExpense()">Add expense</button>
+    <div *ngIf=isAddingExpense>
+      <app-new-expense></app-new-expense>
+    </div>
   </div>
+
+  <br>
+  <br>
+  <button type="button" (click)="deleteTrip()">Delete</button>
 </div>

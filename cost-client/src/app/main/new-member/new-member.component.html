@@ -1,0 +1,9 @@
+<form [formGroup]="newMemberForm" (ngSubmit)="onSubmit()">
+    <label>
+      Name:
+      <input type="text" formControlName="name" required>
+    </label>
+  
+    <button type="submit" [disabled]="!newMemberForm.valid">Submit</button>
+  </form>
+  
