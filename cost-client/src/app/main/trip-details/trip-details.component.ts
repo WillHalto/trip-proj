@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { Router, ActivatedRoute, ParamMap } from "@angular/router";
 import { TripsService } from "../../services/trips.service";
 import { ExpenseService } from "../../services/expense.service";
+import { MemberService } from "../../services/member.service";
 import { Trip } from "../../models/trip";
 import { Member } from "src/app/models/member";
 import { Expense } from "src/app/models/expense";
@@ -23,7 +24,8 @@ export class TripDetailsComponent implements OnInit {
 
   constructor(
     private tripService: TripsService,
-    private expenseService: ExpenseService
+    private expenseService: ExpenseService,
+    private memberService: MemberService
   ) {}
 
   ngOnInit() {}
@@ -35,6 +37,10 @@ export class TripDetailsComponent implements OnInit {
 
   addMember() {
     this.isAddingMember = true;
+  }
+
+  onAddingMember(newMember: Member) {
+    this.memberService.addMember(this.currentTrip, newMember);
   }
 
   removeMember() {

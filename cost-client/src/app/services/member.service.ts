@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Member } from "../models/member";
+import { Trip } from "../models/Trip";
 
 @Injectable({
   providedIn: "root"
@@ -8,10 +9,14 @@ import { Member } from "../models/member";
 export class MemberService {
   constructor(private http: HttpClient) {}
 
-  addMember(newMember: Member) {
-    return this.http.post("/api/addMember", newMember, {
-      withCredentials: true
-    });
+  addMember(currentTrip: Trip, newMember: Member) {
+    return this.http.post(
+      "/api/addMember",
+      { trip: currentTrip, member: newMember },
+      {
+        withCredentials: true
+      }
+    );
   }
 
   deleteMember(member: Member) {

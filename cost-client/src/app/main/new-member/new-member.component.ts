@@ -1,5 +1,4 @@
-import { Component, OnInit } from "@angular/core";
-import { MemberService } from "../../services/member.service";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import {
   Validators,
   FormControl,
@@ -15,22 +14,21 @@ import { Member } from "src/app/models/member";
 })
 export class NewMemberComponent implements OnInit {
   newMember: Member;
+  @Output()
+  addingMemberEventEmitter = new EventEmitter<Member>();
+
   newMemberForm = this.fb.group({
     name: ["", Validators.required]
   });
-  constructor(private fb: FormBuilder, private memberService: MemberService) {}
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit() {}
   onSubmit() {
     this.buildMember(this.newMemberForm.value.name);
-    this.addMember();
+    this.addingMemberEventEmitter.emit(this.newMember);
   }
 
   buildMember(name: string) {
     this.newMember = new Member(name);
-  }
-
-  addMember() {
-    this.memberService.addMember(this.newMember);
   }
 }
