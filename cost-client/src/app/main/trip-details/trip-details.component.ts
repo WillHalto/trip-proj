@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from "@angular/core";
 import { Router, ActivatedRoute, ParamMap } from "@angular/router";
 import { TripsService } from "../../services/trips.service";
 import { Trip } from "../../models/trip";
+import { Member } from "src/app/models/member";
 
 @Component({
   selector: "app-trip-details",
@@ -11,21 +12,13 @@ import { Trip } from "../../models/trip";
 export class TripDetailsComponent implements OnInit {
   @Input()
   currentTrip: Trip;
-
+  isAddingExpense: boolean = false;
   constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private TripsService: TripsService
   ) {}
 
   ngOnInit() {
-    // this.route.paramMap.subscribe(params => this.currentTripID=params.get('id'));
-    // if(this.currentTrip){
-    //   this.TripsService.getTrip(this.currentTripID)
-    //   .subscribe(Trip => {
-    //     this.currentTrip = Trip;
-    //     this.currentTripTitle = this.currentTrip.title;
-    //   });
-    // }
+  }
+  addExpense() {
+    this.isAddingExpense = true;
   }
 }

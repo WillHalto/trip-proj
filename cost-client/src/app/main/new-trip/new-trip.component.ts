@@ -32,10 +32,11 @@ export class NewTripComponent implements OnInit {
 
   onSubmit() {
     this.buildTrip();
-    let a = this.tripService.addTrip(this.newTrip)
+    this.tripService.addTrip(this.newTrip)
       .subscribe(
-        r => {
+        Trip => {
           console.log("successfully added the trip");
+          this.newTrip.owner = Trip.toString;
           this.tripAddedEventEmitter.emit(this.newTrip);
         },
         error => {
@@ -50,7 +51,7 @@ export class NewTripComponent implements OnInit {
     title = this.newTripForm.value.title;
     id = uuid.v4();
     members = this.buildMembers(this.newTripForm.value.members);
-    this.newTrip = new Trip(id, title, members);
+    this.newTrip = new Trip(id, title, null ,members);
   }
 
   buildMembers(membersArray: Array<string>) {
@@ -67,7 +68,7 @@ export class NewTripComponent implements OnInit {
     return this.newTripForm.get("members") as FormArray;
   }
 
-  addInvite() {
+  addMember() {
     this.members.push(this.fb.control(""));
   }
 }

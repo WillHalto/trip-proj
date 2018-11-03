@@ -26,10 +26,12 @@ export class TripsComponent implements OnInit {
       }
     );
   }
+
   onSelect(trip: Trip): void {
     this.selectedTrip = trip;
     this.newTripSelected = false;
   }
+  
   onCreateNewTrip() {
     this.selectedTrip = null;
     this.newTripSelected = true;

@@ -5,7 +5,8 @@ export class Trip {
     constructor(
       public id: string,
       public title: string,
-      public members: Member[],
+      public owner: Member,
+      public members?: Member[],
       public expenses?: Expense[]
       ) { }
   }

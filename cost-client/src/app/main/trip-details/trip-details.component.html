@@ -3,4 +3,18 @@
   <ul>
     <li>ID: {{currentTrip.id}}</li>
   </ul>
+  <h4 *ngIf="currentTrip.members.length">Members</h4>
+    <li *ngFor="let member of currentTrip.members">
+      {{member.name}}
+    </li>
+  <h4 *ngIf="currentTrip.expenses.length">Members</h4>
+    <li *ngFor="let expense of currentTrip.expenses">
+      {{expense.amount}}
+    </li>
+  
+  <button type="button" (click)="addExpense()">Add expense</button>
+
+  <div *ngIf=isAddingExpense>
+    <app-new-expense></app-new-expense>
+  </div>
 </div>
