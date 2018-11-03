@@ -45,7 +45,7 @@ async function deleteTrip(trip) {
 
 async function addMember(trip, newMember) {
   try {
-    Models.Trip.update(
+    Models.Trip.updateOne(
       { id: trip.id },
       { $push: { members: newMember } }
     ).exec();
