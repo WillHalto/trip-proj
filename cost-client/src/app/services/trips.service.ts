@@ -20,11 +20,7 @@ export class TripsService {
   addTrip(newTrip: Trip) {
     
     return this.http
-<<<<<<< HEAD
-      .post("/api/addTrip", { trip: newTrip }, {
-=======
       .post("/api/addTrip", {trip: newTrip}, {
->>>>>>> cb56b015b086557e30e68587d835a790df547ce5
         withCredentials: true
       })
   }
