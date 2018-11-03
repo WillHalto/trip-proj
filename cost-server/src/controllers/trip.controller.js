@@ -58,6 +58,17 @@ async function addMember(req, res) {
   }
 }
 
+async function deleteMember(req, res) {
+  let trip = buildTripFromRequest(req);
+  let member = new Models.Member(req.body.member);
+  let success = await TripService.deleteMember(trip, member);
+  if (success) {
+    res.status(200).send();
+  } else {
+    res.status(418).send();
+  }
+}
+
 function buildTripFromRequest(req) {
   let trip = new Models.Trip(req.body.trip);
   let ownerModel = new Models.Member({
@@ -74,3 +85,4 @@ module.exports.addTrip = addTrip;
 module.exports.addExpense = addExpense;
 module.exports.deleteTrip = deleteTrip;
 module.exports.addMember = addMember;
+module.exports.deleteMember = deleteMember;
