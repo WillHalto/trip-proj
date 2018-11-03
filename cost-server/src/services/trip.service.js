@@ -55,8 +55,21 @@ async function addMember(trip, newMember) {
   return true;
 }
 
+async function deleteMember(trip, member) {
+  try {
+    Models.Trip.updateOne(
+      { id: trip.id },
+      { $pull: { members: member } }
+    ).exec();
+  } catch (err) {
+    return console.error(err);
+  }
+  return true;
+}
+
 module.exports.getTrips = getTrips;
 module.exports.addTrip = addTrip;
 module.exports.addExpense = addExpense;
 module.exports.deleteTrip = deleteTrip;
 module.exports.addMember = addMember;
+module.exports.deleteMember = deleteMember;
