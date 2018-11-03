@@ -40,7 +40,15 @@ export class TripDetailsComponent implements OnInit {
   }
 
   onAddingMember(newMember: Member) {
-    this.memberService.addMember(this.currentTrip, newMember);
+    this.memberService.addMember(this.currentTrip, newMember).subscribe(
+      member => {
+        console.log("successfully added the member");
+      },
+      error => {
+        console.log("fail");
+        console.log(error);
+      }
+    );
   }
 
   removeMember() {

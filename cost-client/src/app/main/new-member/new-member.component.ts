@@ -23,6 +23,7 @@ export class NewMemberComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
 
   ngOnInit() {}
+
   onSubmit() {
     this.buildMember(this.newMemberForm.value.name);
     this.addingMemberEventEmitter.emit(this.newMember);
