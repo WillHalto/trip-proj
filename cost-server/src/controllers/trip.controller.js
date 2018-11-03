@@ -17,7 +17,7 @@ var getTrips = async function(req, res) {
  * Adds a trip for the given user
  */
 var addTrip = async function(req, res) {
-  let trip = new Model.Trip(req.body);
+  let trip = new Models.Trip(req.body);
   trip.owner = req.sub;
   let id = await TripService.addTrip(trip);
   res.status(200).send({ id });
