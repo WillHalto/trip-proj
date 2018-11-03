@@ -27,10 +27,11 @@ var CostSchema = new Schema({
 var TripSchema = new Schema({
   id: String,
   title: String,
-  owner: MemberSchema,
+  owner: String,
   members: [MemberSchema],
   expenses: [CostSchema]
 });
 
 module.exports.Trip = mongoose.model("TripModel", TripSchema);
 module.exports.Member = mongoose.model("MemberModel", MemberSchema);
+module.exports.Cost = mongoose.model("CostModel", MemberSchema);
