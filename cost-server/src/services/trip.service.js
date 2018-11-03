@@ -19,8 +19,8 @@ async function addTrip(newTrip) {
  * @param ownerID The id of the trip's owner
  */
 async function getTrips(ownerID) {
-  let query = Models.Trip.find({ ownerID: ownerID });
-  return query.exec();
+  let trips = Models.Trip.find({ ownerID: ownerID }).exec();
+  return trips;
 }
 
 async function addExpense(trip, expense) {
