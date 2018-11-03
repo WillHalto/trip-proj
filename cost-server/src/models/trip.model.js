@@ -27,7 +27,8 @@ var CostSchema = new Schema({
 var TripSchema = new Schema({
   id: String,
   title: String,
-  owner: String,
+  ownerID: String,
+  owner: MemberSchema,
   members: [MemberSchema],
   expenses: [CostSchema]
 });

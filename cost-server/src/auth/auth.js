@@ -40,7 +40,7 @@ router.use(async function(req, res, next) {
   if (!payload) {
     res.status(401).send();
   } else if (payload["exp"] > Math.round(date.getTime() / 1000)) {
-    req.sub = payload["sub"];
+    req.googlePayload = payload;
     next();
   } else {
     res.status(401).send();
