@@ -10,5 +10,6 @@ var tripController = require("../controllers/trip.controller");
 router.get("/getTrips", tripController.getTrips);
 router.post("/addTrip", tripController.addTrip);
 router.post("/addExpense", tripController.addExpense);
+router.post("/deleteTrip", tripController.deleteTrip);
 
 module.exports = router;
