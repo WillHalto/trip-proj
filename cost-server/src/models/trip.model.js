@@ -1,12 +1,12 @@
 //Trip models
 
-var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+let mongoose = require("mongoose");
+let Schema = mongoose.Schema;
 
 /**
  * A single trip member.
  */
-var MemberSchema = new Schema({
+let MemberSchema = new Schema({
   id: String,
   name: String
 });
@@ -14,7 +14,7 @@ var MemberSchema = new Schema({
 /**
  * A cost incurred on the trip, paid by one member and applying to some set of the total members.
  */
-var ExpenseSchema = new Schema({
+let ExpenseSchema = new Schema({
   id: String,
   amount: Number,
   paidBy: MemberSchema, //Member who paid the cost
@@ -24,7 +24,7 @@ var ExpenseSchema = new Schema({
 /**
  * The trip, includes the cost and member info.
  */
-var TripSchema = new Schema({
+let TripSchema = new Schema({
   id: String,
   title: String,
   ownerID: String,

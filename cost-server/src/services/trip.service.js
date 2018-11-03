@@ -1,7 +1,7 @@
 //Database service for trips
 require("dotenv").config();
 
-var Models = require("../models/trip.model");
+let Models = require("../models/trip.model");
 
 /**
  * Saves a new trip to the database.

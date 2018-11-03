@@ -1,7 +1,7 @@
 //Trip controller
 
-var Models = require("../models/trip.model");
-var TripService = require("../services/trip.service");
+let Models = require("../models/trip.model");
+let TripService = require("../services/trip.service");
 
 /**
  * Retrieves all stored trips for the given user.

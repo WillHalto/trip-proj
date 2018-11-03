@@ -1,11 +1,11 @@
-var express = require("express");
-var bodyParser = require("body-parser");
-var cookieParser = require("cookie-parser");
-var mongoose = require("mongoose");
+let express = require("express");
+let bodyParser = require("body-parser");
+let cookieParser = require("cookie-parser");
+let mongoose = require("mongoose");
 require("dotenv").config();
 
 //main app
-var app = express();
+let app = express();
 
 //request parsing
 app.use(cookieParser());
@@ -26,7 +26,7 @@ let db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 
 //Routes
-var router = require("./src/routes/index");
+let router = require("./src/routes/index");
 app.use("/", router);
 
 module.exports = app;
