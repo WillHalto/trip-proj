@@ -45,9 +45,10 @@ async function deleteTrip(trip) {
 
 async function addMember(trip, newMember) {
   try {
-    let updateTrip = Models.Trip.find(trip).exec();
-    updateTrip.members.push(newMember);
-    updateTrip.save();
+    Models.Trip.update(
+      { id: trip.id },
+      { $push: { members: newMember } }
+    ).exec();
   } catch (err) {
     return console.error(err);
   }
