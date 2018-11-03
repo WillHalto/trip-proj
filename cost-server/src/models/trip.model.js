@@ -14,7 +14,7 @@ var MemberSchema = new Schema({
 /**
  * A cost incurred on the trip, paid by one member and applying to some set of the total members.
  */
-var CostSchema = new Schema({
+var ExpenseSchema = new Schema({
   id: String,
   amount: Number,
   paidBy: MemberSchema, //Member who paid the cost
@@ -30,9 +30,9 @@ var TripSchema = new Schema({
   ownerID: String,
   owner: MemberSchema,
   members: [MemberSchema],
-  expenses: [CostSchema]
+  expenses: [ExpenseSchema]
 });
 
 module.exports.Trip = mongoose.model("TripModel", TripSchema);
 module.exports.Member = mongoose.model("MemberModel", MemberSchema);
-module.exports.Cost = mongoose.model("CostModel", MemberSchema);
+module.exports.Expense = mongoose.model("ExpenseModel", ExpenseSchema);

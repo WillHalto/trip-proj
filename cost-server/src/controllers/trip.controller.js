@@ -16,15 +16,8 @@ async function getTrips(req, res) {
 /**
  * Adds a trip for the given user
  */
-async function addTrip(req, res) {
-  let trip = new Models.Trip(req.body);
-  let ownerModel = new Models.Member({
-    id: req.googlePayload["sub"],
-    name: req.googlePayload["name"]
-  });
-  trip.owner = ownerModel;
-  trip.ownerID = ownerModel.id;
-
+function addTrip(req, res) {
+  let trip = buildTripFromRequest(req);
   let success = await TripService.addTrip(trip);
   if (success) {
     res.status(200).send(trip);
@@ -33,17 +26,39 @@ async function addTrip(req, res) {
   }
 }
 
-var addCost = async function(req, res) {
-  let trip = new Models.Trip(req.body.trip);
-  trip.owner = req.sub;
-  let cost = new Models.Cost(req.body.cost);
-  let success = await TripService.addCost(trip, cost);
+function addExpense(req, res) {
+  let trip = buildTripFromRequest(req);
+  let expense = new Models.Expense(req.body.expense);
+  let success = await TripService.addExpense(trip, expense);
   if (success) {
     res.status(200).send();
   } else {
     res.status(418).send();
   }
-};
+}
+
+function deleteTrip(req, res) {
+  let trip = buildTripFromRequest(req);
+  let success = await TripService.deleteTrip(trip);
+  if (success) {
+    res.status(200).send();
+  } else {
+    res.status(418).send();
+  }
+}
+
+function buildTripFromRequest(req) {
+  let trip = new Models.Trip(req.body.trip);
+  let ownerModel = new Models.Member({
+    id: req.googlePayload["sub"],
+    name: req.googlePayload["name"]
+  });
+  trip.owner = ownerModel;
+  trip.ownerID = ownerModel.id;
+  return trip;
+}
 
 module.exports.getTrips = getTrips;
 module.exports.addTrip = addTrip;
+module.exports.addExpense = addExpense;
+module.exports.deleteTrip = deleteTrip;
