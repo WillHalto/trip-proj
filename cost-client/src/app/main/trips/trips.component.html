@@ -1,24 +1,19 @@
-
 <div class="row" *ngIf="Trips">
   <div class="trips-container">
     <h2>
       Here are your trips:
     </h2>
-    <ul class="trips" >
-      <li [class.selected]="newTripSelected" 
-      (click)="onCreateNewTrip()">
+    <ul class="trips">
+      <li [class.selected]="newTripSelected" (click)="onCreateNewTrip()">
         Create New
       </li>
-      <li *ngFor="let Trip of Trips;" 
-      [class.selected]="Trip === selectedTrip" 
-      (click)="onSelect(Trip)">
+      <li *ngFor="let Trip of Trips;" [class.selected]="Trip === selectedTrip" (click)="onSelect(Trip)">
         {{Trip.title}}
       </li>
     </ul>
   </div>
   <div class="trip-info-container">
     <app-new-trip *ngIf="newTripSelected" (tripAddedEventEmitter)="onAddedNewTrip($event)"></app-new-trip>
-    <app-trip-details *ngIf="selectedTrip" [currentTrip]="selectedTrip" ></app-trip-details>
+    <app-trip-details *ngIf="selectedTrip" [currentTrip]="selectedTrip"></app-trip-details>
   </div>
 </div>
-

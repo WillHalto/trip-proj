@@ -17,11 +17,14 @@ export class TripDetailsComponent implements OnInit {
   currentTrip: Trip;
   isAddingExpense: boolean;
   isAddingMember: boolean;
-  
-  constructor(private tripService: TripsService,private memberService: MemberService,private expenseService: ExpenseService) {}
 
-  ngOnInit() {
-  }
+  constructor(
+    private tripService: TripsService,
+    private memberService: MemberService,
+    private expenseService: ExpenseService
+  ) {}
+
+  ngOnInit() {}
 
   ngOnChanges() {
     this.isAddingExpense = false;
@@ -31,7 +34,7 @@ export class TripDetailsComponent implements OnInit {
   addExpense() {
     console.log("Adding expense");
     this.isAddingExpense = true;
-    let newExpense: Expense = new Expense(null,null,null,null);
+    let newExpense: Expense = new Expense(null, null, null, null);
     this.expenseService.addExpense(newExpense);
   }
 
@@ -51,15 +54,14 @@ export class TripDetailsComponent implements OnInit {
   }
 
   deleteTrip() {
-    this.tripService.deleteTrip(this.currentTrip)
-    .subscribe(
+    this.tripService.deleteTrip(this.currentTrip).subscribe(
       trip => {
-        console.log("Deletion successful")
+        console.log("Deletion successful");
       },
       error => {
         console.log(error);
         alert("Something went wrong.");
       }
-    )
+    );
   }
 }

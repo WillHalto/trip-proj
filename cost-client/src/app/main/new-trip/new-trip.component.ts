@@ -22,27 +22,26 @@ export class NewTripComponent implements OnInit {
     title: ["", Validators.required],
     members: this.fb.array([])
   });
-  @Output() tripAddedEventEmitter = new EventEmitter<Trip>();
+  @Output()
+  tripAddedEventEmitter = new EventEmitter<Trip>();
 
-  constructor(private fb: FormBuilder, private tripService: TripsService) {
-  }
+  constructor(private fb: FormBuilder, private tripService: TripsService) {}
 
   ngOnInit() {}
 
   onSubmit() {
     this.buildTrip();
-    this.tripService.addTrip(this.newTrip)
-      .subscribe(
-        trip=> {
-          console.log("successfully added the trip");
-          this.newTrip.owner = (trip as Trip).owner;
-          this.tripAddedEventEmitter.emit(this.newTrip);
-        },
-        error => {
-          console.log(error);
-          alert("Something went wrong.");
-        }
-      )
+    this.tripService.addTrip(this.newTrip).subscribe(
+      trip => {
+        console.log("successfully added the trip");
+        this.newTrip.owner = (trip as Trip).owner;
+        this.tripAddedEventEmitter.emit(this.newTrip);
+      },
+      error => {
+        console.log(error);
+        alert("Something went wrong.");
+      }
+    );
   }
 
   buildTrip() {
@@ -50,7 +49,7 @@ export class NewTripComponent implements OnInit {
     title = this.newTripForm.value.title;
     id = uuid.v4();
     members = this.buildMembers(this.newTripForm.value.members);
-    this.newTrip = new Trip(id, title, null ,members);
+    this.newTrip = new Trip(id, title, null, members);
   }
 
   buildMembers(membersArray: Array<string>) {

@@ -31,7 +31,7 @@ export class TripsComponent implements OnInit {
     this.selectedTrip = trip;
     this.newTripSelected = false;
   }
-  
+
   onCreateNewTrip() {
     this.selectedTrip = null;
     this.newTripSelected = true;

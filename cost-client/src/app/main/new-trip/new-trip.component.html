@@ -6,7 +6,7 @@
     Trip Name:
     <input type="text" formControlName="title" required>
   </label>
-<!-- 
+  <!-- 
   <div formGroupName="dates">
     <label>
       Start date:
@@ -31,7 +31,7 @@
  -->
   <div formArrayName="members">
     <h5>Who is joining?</h5>
-  
+
     <div *ngFor="let member of members.controls; let i=index">
       <label>
         Name:
