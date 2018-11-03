@@ -43,6 +43,7 @@ export class TripDetailsComponent implements OnInit {
     this.memberService.addMember(this.currentTrip, newMember).subscribe(
       member => {
         console.log("successfully added the member");
+        this.currentTrip.members.push(newMember);
       },
       error => {
         console.log("fail");
@@ -51,8 +52,18 @@ export class TripDetailsComponent implements OnInit {
     );
   }
 
-  removeMember() {
-    this.isAddingMember = false;
+  removeMember(member: Member) {
+    this.memberService.deleteMember(this.currentTrip, member).subscribe(
+      res => {
+        console.log("successfully deleted the member");
+        let index = this.currentTrip.members.indexOf(member);
+        this.currentTrip.members.splice(index, 1);
+      },
+      error => {
+        console.log("fail");
+        console.log(error);
+      }
+    );
   }
 
   addExpense() {
