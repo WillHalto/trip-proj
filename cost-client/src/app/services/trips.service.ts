@@ -18,11 +18,11 @@ export class TripsService {
   }
 
   addTrip(newTrip: Trip) {
+    let status = 0
     return this.http
       .post("/api/addTrip", JSON.stringify(newTrip), {
         withCredentials: true,
         headers: new HttpHeaders().set("Content-Type", "application/json")
       })
-      .subscribe(r => {});
   }
 }

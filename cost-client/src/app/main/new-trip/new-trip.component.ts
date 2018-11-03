@@ -28,7 +28,10 @@ export class NewTripComponent implements OnInit {
 
   onSubmit() {
     this.buildTrip();
-    this.tripService.addTrip(this.newTrip);
+    let a = this.tripService.addTrip(this.newTrip)
+      .subscribe(
+      r => {console.log("success")},
+      error => console.log(error));
   }
 
   buildTrip() {
@@ -44,7 +47,7 @@ export class NewTripComponent implements OnInit {
     for (let member of membersArray)
     {
       if (member !== "") {
-        members.push(new Member(uuid.v4(), member));
+        members.push(new Member(member));
       }
     }
     return members;
