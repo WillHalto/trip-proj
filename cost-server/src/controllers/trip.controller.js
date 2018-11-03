@@ -16,7 +16,7 @@ async function getTrips(req, res) {
 /**
  * Adds a trip for the given user
  */
-function addTrip(req, res) {
+async function addTrip(req, res) {
   let trip = buildTripFromRequest(req);
   let success = await TripService.addTrip(trip);
   if (success) {
@@ -26,7 +26,7 @@ function addTrip(req, res) {
   }
 }
 
-function addExpense(req, res) {
+async function addExpense(req, res) {
   let trip = buildTripFromRequest(req);
   let expense = new Models.Expense(req.body.expense);
   let success = await TripService.addExpense(trip, expense);
@@ -37,7 +37,7 @@ function addExpense(req, res) {
   }
 }
 
-function deleteTrip(req, res) {
+async function deleteTrip(req, res) {
   let trip = buildTripFromRequest(req);
   let success = await TripService.deleteTrip(trip);
   if (success) {
