@@ -1,8 +1,5 @@
 <div *ngIf="currentTrip">
   <h2>{{currentTrip.title | uppercase}}</h2>
-  <ul>
-    <li>ID: {{currentTrip.id}}</li>
-  </ul>
   <h4>Members</h4>
     <li>{{currentTrip.owner.name}}</li>
     <li *ngFor="let member of currentTrip.members">
