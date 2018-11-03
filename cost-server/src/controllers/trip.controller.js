@@ -37,6 +37,17 @@ async function addExpense(req, res) {
   }
 }
 
+async function deleteExpense(req, res) {
+  let trip = buildTripFromRequest(req);
+  let expense = new Models.Member(req.body.expense);
+  let success = await TripService.deleteExpense(trip, expense);
+  if (success) {
+    res.status(200).send();
+  } else {
+    res.status(418).send();
+  }
+}
+
 async function deleteTrip(req, res) {
   let trip = buildTripFromRequest(req);
   let success = await TripService.deleteTrip(trip);
@@ -83,6 +94,7 @@ function buildTripFromRequest(req) {
 module.exports.getTrips = getTrips;
 module.exports.addTrip = addTrip;
 module.exports.addExpense = addExpense;
+module.exports.deleteExpense = deleteExpense;
 module.exports.deleteTrip = deleteTrip;
 module.exports.addMember = addMember;
 module.exports.deleteMember = deleteMember;
