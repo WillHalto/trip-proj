@@ -1,6 +1,6 @@
 require("dotenv").config();
-var express = require("express");
-var router = express.Router();
+let express = require("express");
+let router = express.Router();
 
 /**
  * Google OAUTH 2 client used to authenticat IDTOKEN from client
@@ -51,7 +51,7 @@ router.use(async function(req, res, next) {
  * Verify IDTOKEN passed in cookie with google oauth client
  * @param token The IDTOKEN included in the request cookie
  */
-var verifyToken = async function(token) {
+let verifyToken = async function(token) {
   const ticket = await client.verifyIdToken({
     idToken: token,
     audience: process.env.GOOGLE_CLIENT_ID
@@ -62,7 +62,7 @@ var verifyToken = async function(token) {
 
 module.exports = router;
 
-// var setHeaders = function(req, res) {
+// let setHeaders = function(req, res) {
 //   res.header("Access-Control-Allow-Origin", req.headers.origin);
 //   res.header("Access-Control-Allow-Credentials", true);
 //   res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");

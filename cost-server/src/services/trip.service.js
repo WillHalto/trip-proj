@@ -1,7 +1,7 @@
 //Database service for trips
 require("dotenv").config();
 
-var Models = require("../models/trip.model");
+let Models = require("../models/trip.model");
 
 /**
  * Saves a new trip to the database.
@@ -24,12 +24,13 @@ async function getTrips(ownerID) {
 }
 
 async function addExpense(trip, expense) {
-  let updateTrip = Models.Trip.find(trip).exec();
-  updateTrip.expenses.push(expense);
-  updateTrip.save(function(err) {
-    if (err) return console.error(err);
-  });
-
+  try {
+    let updateTrip = Models.Trip.find(trip).exec();
+    updateTrip.expenses.push(expense);
+    updateTrip.save();
+  } catch (err) {
+    return console.error(err);
+  }
   return true;
 }
 
@@ -42,7 +43,19 @@ async function deleteTrip(trip) {
   return true;
 }
 
+async function addMember(trip, newMember) {
+  try {
+    let updateTrip = Models.Trip.find(trip).exec();
+    updateTrip.members.push(newMember);
+    updateTrip.save();
+  } catch (err) {
+    return console.error(err);
+  }
+  return true;
+}
+
 module.exports.getTrips = getTrips;
 module.exports.addTrip = addTrip;
 module.exports.addExpense = addExpense;
 module.exports.deleteTrip = deleteTrip;
+module.exports.addMember = addMember;
