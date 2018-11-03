@@ -27,6 +27,7 @@ export class NewMemberComponent implements OnInit {
   onSubmit() {
     this.buildMember(this.newMemberForm.value.name);
     this.addingMemberEventEmitter.emit(this.newMember);
+    this.newMemberForm.reset();
   }
 
   buildMember(name: string) {
