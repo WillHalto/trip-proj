@@ -35,7 +35,7 @@ async function addExpense(trip, expense) {
 
 async function deleteTrip(trip) {
   try {
-    Models.Trip.deleteOne(trip).exec();
+    Models.Trip.deleteOne({ id: trip.id }).exec();
   } catch (err) {
     return console.error(err);
   }

@@ -18,16 +18,22 @@ export class TripsService {
   }
 
   addTrip(newTrip: Trip) {
-    
-    return this.http
-      .post("/api/addTrip", {trip: newTrip}, {
+    return this.http.post(
+      "/api/addTrip",
+      { trip: newTrip },
+      {
         withCredentials: true
-      })
+      }
+    );
   }
 
   deleteTrip(trip: Trip) {
-    return this.http.post("/api/deleteTrip", trip, {
-      withCredentials: true
-    })
+    return this.http.post(
+      "/api/deleteTrip",
+      { trip: trip },
+      {
+        withCredentials: true
+      }
+    );
   }
 }
