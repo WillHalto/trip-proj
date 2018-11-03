@@ -16,6 +16,8 @@ export class NewMemberComponent implements OnInit {
   newMember: Member;
   @Output()
   addingMemberEventEmitter = new EventEmitter<Member>();
+  @Output()
+  closeNewMemberFormEventEmitter = new EventEmitter<Member>();
 
   newMemberForm = this.fb.group({
     name: ["", Validators.required]
@@ -32,5 +34,9 @@ export class NewMemberComponent implements OnInit {
 
   buildMember(name: string) {
     this.newMember = new Member(name);
+  }
+
+  onCancel() {
+    this.closeNewMemberFormEventEmitter.emit();
   }
 }

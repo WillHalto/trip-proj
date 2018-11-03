@@ -89,4 +89,8 @@ export class TripDetailsComponent implements OnInit {
       }
     );
   }
+
+  onClosingMemberForm() {
+    this.isAddingMember = false;
+  }
 }

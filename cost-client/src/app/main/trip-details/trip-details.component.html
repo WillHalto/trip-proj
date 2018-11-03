@@ -8,9 +8,9 @@
       {{member.name}}
       <button type="button" (click)="removeMember(member)">Remove</button>
     </li>
-    <button type="button" (click)="addMember()">Add member</button>
+    <button *ngIf=!isAddingMember type="button" (click)="addMember()">Add member</button>
     <div *ngIf=isAddingMember>
-      <app-new-member (addingMemberEventEmitter)="onAddingMember($event)"></app-new-member>
+      <app-new-member (addingMemberEventEmitter)="onAddingMember($event)" (closeNewMemberFormEventEmitter)="onClosingMemberForm()"></app-new-member>
     </div>
   </div>
 
@@ -24,7 +24,7 @@
       <button type="button" (click)="removeExpense()">Remove</button>
     </li>
 
-    <button type="button" (click)="addExpense()">Add expense</button>
+    <button *ngIf=!isAddingExpense type="button" (click)="addExpense()">Add expense</button>
     <div *ngIf=isAddingExpense>
       <app-new-expense></app-new-expense>
     </div>
