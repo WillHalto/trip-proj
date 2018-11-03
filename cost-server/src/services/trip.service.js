@@ -7,12 +7,12 @@ var Models = require("../models/trip.model");
  * Saves a new trip to the database.
  * @param newTrip The Trip model to save to the database.
  */
-var addTrip = async function(newTrip) {
+async function addTrip(newTrip) {
   mongoose.connect(
     process.env.MONGODB_ID,
     { useNewUrlParser: true }
   );
-  var db = mongoose.connection;
+  let db = mongoose.connection;
   db.on("error", console.error.bind(console, "connection error:"));
   db.once("open", function() {
     console.log("Add Trip");
@@ -20,26 +20,25 @@ var addTrip = async function(newTrip) {
       if (err) return console.error(err);
     });
   });
-  return newTrip.id;
-};
+  return true;
+}
 
 /**
  * Retrieves all trips from the database for the given owner
  */
-var getTrips = async function(ownerID) {
+async function getTrips(ownerID) {
   mongoose.connect(
     process.env.MONGODB_ID,
     { useNewUrlParser: true }
   );
-  var db = mongoose.connection;
+  let db = mongoose.connection;
   db.on("error", console.error.bind(console, "connection error:"));
   db.once("open", function() {
     console.log("Get Trips");
   });
-
-  var query = Models.Trip.find({ owner: ownerID });
+  let query = Models.Trip.find({ ownerID: ownerID });
   return query.exec();
-};
+}
 
 module.exports.getTrips = getTrips;
 module.exports.addTrip = addTrip;

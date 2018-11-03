@@ -7,21 +7,31 @@ var TripService = require("../services/trip.service");
  * Retrieves all stored trips for the given user.
  * @param res The response to send to the client containing all trips.
  */
-var getTrips = async function(req, res) {
-  let ownerID = req.sub;
+async function getTrips(req, res) {
+  let ownerID = req.googlePayload["sub"];
   let trips = await TripService.getTrips(ownerID);
   res.send(trips);
-};
+}
 
 /**
  * Adds a trip for the given user
  */
-var addTrip = async function(req, res) {
+async function addTrip(req, res) {
   let trip = new Models.Trip(req.body);
-  trip.owner = req.sub;
-  let id = await TripService.addTrip(trip);
-  res.status(200).send({ id });
-};
+  let ownerModel = new Models.Member({
+    id: req.googlePayload["sub"],
+    name: req.googlePayload["name"]
+  });
+  trip.owner = ownerModel;
+  trip.ownerID = ownerModel.id;
+
+  let success = await TripService.addTrip(trip);
+  if (success) {
+    res.status(200).send(trip);
+  } else {
+    res.status(418).send();
+  }
+}
 
 var addCost = async function(req, res) {
   let trip = new Models.Trip(req.body.trip);
