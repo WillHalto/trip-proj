@@ -42,4 +42,14 @@ export class TripsComponent implements OnInit {
     this.selectedTrip = newTrip;
     this.newTripSelected = false;
   }
+
+  onDeletedTrip(trip: Trip): void {
+    let index = this.Trips.indexOf(trip);
+    this.Trips.splice(index, 1);
+    this.selectedTrip = null;
+    this.newTripSelected = false;
+    this.router.navigate(["/postlogin"]);
+  }
+
+  getTrips() {}
 }

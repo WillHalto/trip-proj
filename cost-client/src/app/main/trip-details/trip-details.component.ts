@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { Router, ActivatedRoute, ParamMap } from "@angular/router";
 import { TripsService } from "../../services/trips.service";
 import { ExpenseService } from "../../services/expense.service";
@@ -15,6 +15,10 @@ import { Expense } from "src/app/models/expense";
 export class TripDetailsComponent implements OnInit {
   @Input()
   currentTrip: Trip;
+
+  @Output()
+  tripDeletedEventEmitter = new EventEmitter<Trip>();
+
   isAddingExpense: boolean;
   isAddingMember: boolean;
 
@@ -55,8 +59,9 @@ export class TripDetailsComponent implements OnInit {
 
   deleteTrip() {
     this.tripService.deleteTrip(this.currentTrip).subscribe(
-      trip => {
+      res => {
         console.log("Deletion successful");
+        this.tripDeletedEventEmitter.emit(this.currentTrip);
       },
       error => {
         console.log(error);
