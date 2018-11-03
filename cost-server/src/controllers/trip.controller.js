@@ -1,6 +1,6 @@
 //Trip controller
 
-var Model = require("../models/trip.model");
+var Models = require("../models/trip.model");
 var TripService = require("../services/trip.service");
 
 /**
@@ -8,13 +8,8 @@ var TripService = require("../services/trip.service");
  * @param res The response to send to the client containing all trips.
  */
 var getTrips = async function(req, res) {
-  let trips = await TripService.getTrips();
-  res.send(trips);
-};
-
-var DDDgetTrips = async function(req, res) {
-  let ownerID = req.body.id;
-  let trips = await TripService.getTrips(id);
+  let ownerID = req.sub;
+  let trips = await TripService.getTrips(ownerID);
   res.send(trips);
 };
 
@@ -23,13 +18,22 @@ var DDDgetTrips = async function(req, res) {
  */
 var addTrip = async function(req, res) {
   let trip = new Model.Trip(req.body);
+  trip.owner = req.sub;
   let id = await TripService.addTrip(trip);
   res.status(200).send({ id });
 };
 
-var addCost = async function(req, res) {};
-
-var calcTotals = async function(req, res) {};
+var addCost = async function(req, res) {
+  let trip = new Models.Trip(req.body.trip);
+  trip.owner = req.sub;
+  let cost = new Models.Cost(req.body.cost);
+  let success = await TripService.addCost(trip, cost);
+  if (success) {
+    res.status(200).send();
+  } else {
+    res.status(418).send();
+  }
+};
 
 module.exports.getTrips = getTrips;
 module.exports.addTrip = addTrip;
