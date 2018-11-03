@@ -10,6 +10,7 @@ let tripController = require("../controllers/trip.controller");
 router.get("/getTrips", tripController.getTrips);
 router.post("/addTrip", tripController.addTrip);
 router.post("/addExpense", tripController.addExpense);
+router.post("/deleteExpense", tripController.deleteExpense);
 router.post("/deleteTrip", tripController.deleteTrip);
 router.post("/addMember", tripController.addMember);
 router.post("/deleteMember", tripController.deleteMember);

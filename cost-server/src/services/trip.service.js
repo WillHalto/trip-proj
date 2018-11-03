@@ -25,9 +25,22 @@ async function getTrips(ownerID) {
 
 async function addExpense(trip, expense) {
   try {
-    let updateTrip = Models.Trip.find(trip).exec();
-    updateTrip.expenses.push(expense);
-    updateTrip.save();
+    Models.Trip.updateOne(
+      { id: trip.id },
+      { $push: { expenses: expense } }
+    ).exec();
+  } catch (err) {
+    return console.error(err);
+  }
+  return true;
+}
+
+async function deleteExpense(trip, expense) {
+  try {
+    Models.Trip.updateOne(
+      { id: trip.id },
+      { $pull: { expenses: expense } }
+    ).exec();
   } catch (err) {
     return console.error(err);
   }
@@ -70,6 +83,7 @@ async function deleteMember(trip, member) {
 module.exports.getTrips = getTrips;
 module.exports.addTrip = addTrip;
 module.exports.addExpense = addExpense;
+module.exports.deleteExpense = deleteExpense;
 module.exports.deleteTrip = deleteTrip;
 module.exports.addMember = addMember;
 module.exports.deleteMember = deleteMember;
