@@ -14,5 +14,6 @@ router.post("/deleteExpense", tripController.deleteExpense);
 router.post("/deleteTrip", tripController.deleteTrip);
 router.post("/addMember", tripController.addMember);
 router.post("/deleteMember", tripController.deleteMember);
+router.post("/settleUp", tripController.settleUp);
 
 module.exports = router;
