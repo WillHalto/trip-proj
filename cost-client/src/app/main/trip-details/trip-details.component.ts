@@ -41,7 +41,7 @@ export class TripDetailsComponent implements OnInit {
 
   onAddingMember(newMember: Member) {
     this.memberService.addMember(this.currentTrip, newMember).subscribe(
-      member => {
+      res => {
         console.log("successfully added the member");
         this.currentTrip.members.push(newMember);
       },
@@ -72,7 +72,7 @@ export class TripDetailsComponent implements OnInit {
 
   onAddingExpense(newExpense: Expense) {
     this.expenseService.addExpense(this.currentTrip, newExpense).subscribe(
-      expense => {
+      res => {
         console.log("successfully added the expense");
         this.currentTrip.expenses.push(newExpense);
       },
