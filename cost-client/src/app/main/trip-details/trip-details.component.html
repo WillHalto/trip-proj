@@ -17,20 +17,24 @@
   <br>
 
   <div class=expenses>
-    <h4>Expense</h4>
+    <h4>Expenses</h4>
     <p *ngIf="!currentTrip.expenses?.length">There is no expense for this trip yet.</p>
     <li *ngFor="let expense of currentTrip.expenses">
-      {{expense.amount}}
+      {{expense.amount}} paid by {{expense.paidBy.name}} for
+      <span *ngFor="let participant of expense.participants">{{participant.name}} </span>
       <button type="button" (click)="removeExpense()">Remove</button>
     </li>
 
     <button *ngIf=!isAddingExpense type="button" (click)="addExpense()">Add expense</button>
     <div *ngIf=isAddingExpense>
-      <app-new-expense></app-new-expense>
+      <app-new-expense [currentTrip]="currentTrip" (addingExpenseEventEmitter)="onAddingExpense($event)"
+        (closeNewExpenseFormEventEmitter)="onClosingExpenseForm()"></app-new-expense>
     </div>
   </div>
 
   <br>
+  <br>
+  <button type="button" (click)="settleUp()">Settle Expenses</button>
   <br>
   <button type="button" (click)="deleteTrip()">Delete</button>
 </div>
