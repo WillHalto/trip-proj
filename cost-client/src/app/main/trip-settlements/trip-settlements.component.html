@@ -7,10 +7,10 @@
   </div>
   <div *ngIf="settlement.name != 'totalCost'">
     <li *ngIf="settlement.amount>0">
-      {{settlement.name}} pays ${{settlement.amount}}.
+      {{settlement.name}} receives ${{settlement.amount}}.
     </li>
     <li *ngIf="0>settlement.amount">
-      {{settlement.name}} receives ${{-settlement.amount}}.
+      {{settlement.name}} pays ${{-settlement.amount}}.
     </li>
   </div>
 
