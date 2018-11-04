@@ -67,14 +67,34 @@ export class TripDetailsComponent implements OnInit {
   }
 
   addExpense() {
-    console.log("Adding expense");
     this.isAddingExpense = true;
-    let newExpense: Expense = new Expense(null, null, null, null);
-    this.expenseService.addExpense(newExpense);
   }
 
-  removeExpense() {
-    console.log("Removing expense");
+  onAddingExpense(newExpense: Expense) {
+    this.expenseService.addExpense(this.currentTrip, newExpense).subscribe(
+      expense => {
+        console.log("successfully added the expense");
+        this.currentTrip.expenses.push(newExpense);
+      },
+      error => {
+        console.log("fail");
+        console.log(error);
+      }
+    );
+  }
+
+  removeExpense(expense: Expense) {
+    this.expenseService.deleteExpense(this.currentTrip, expense).subscribe(
+      res => {
+        console.log("successfully deleted the member");
+        let index = this.currentTrip.expenses.indexOf(expense);
+        this.currentTrip.expenses.splice(index, 1);
+      },
+      error => {
+        console.log("fail");
+        console.log(error);
+      }
+    );
   }
 
   deleteTrip() {
@@ -92,5 +112,9 @@ export class TripDetailsComponent implements OnInit {
 
   onClosingMemberForm() {
     this.isAddingMember = false;
+  }
+
+  onClosingExpenseForm() {
+    this.isAddingExpense = false;
   }
 }

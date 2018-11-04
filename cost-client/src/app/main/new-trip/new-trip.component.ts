@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from "@angular/core";
 import { Trip } from "../../models/trip";
 import { Member } from "../../models/member";
+import { Expense } from "../../models/expense";
 import {
   Validators,
   FormControl,
@@ -45,11 +46,12 @@ export class NewTripComponent implements OnInit {
   }
 
   buildTrip() {
-    let title: string, id: string, members: Member[];
+    let title: string, id: string, members: Member[], expenses: Expense[];
     title = this.newTripForm.value.title;
     id = uuid.v4();
     members = this.buildMembers(this.newTripForm.value.members);
-    this.newTrip = new Trip(id, title, null, members);
+    expenses = [];
+    this.newTrip = new Trip(id, title, null, members, expenses);
   }
 
   buildMembers(membersArray: Array<string>) {
