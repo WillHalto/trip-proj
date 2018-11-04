@@ -36,4 +36,14 @@ export class TripsService {
       }
     );
   }
+
+  settleUp(trip: Trip) {
+    return this.http.post(
+      "/api/settleUp",
+      { trip: trip },
+      {
+        withCredentials: true
+      }
+    );
+  }
 }

@@ -117,4 +117,16 @@ export class TripDetailsComponent implements OnInit {
   onClosingExpenseForm() {
     this.isAddingExpense = false;
   }
+
+  settleUp() {
+    this.tripService.settleUp(this.currentTrip).subscribe(
+      res => {
+        console.log("Settlement successful");
+      },
+      error => {
+        console.log(error);
+        alert("Something went wrong.");
+      }
+    );
+  }
 }
