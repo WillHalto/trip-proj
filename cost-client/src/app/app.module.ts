@@ -13,6 +13,7 @@ import { NewTripComponent } from "./main/new-trip/new-trip.component";
 import { TripDetailsComponent } from "./main/trip-details/trip-details.component";
 import { NewExpenseComponent } from './main/new-expense/new-expense.component';
 import { NewMemberComponent } from './main/new-member/new-member.component';
+import { TripSettlementsComponent } from './main/trip-settlements/trip-settlements.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { NewMemberComponent } from './main/new-member/new-member.component';
     NewTripComponent,
     TripDetailsComponent,
     NewExpenseComponent,
-    NewMemberComponent
+    NewMemberComponent,
+    TripSettlementsComponent
   ],
   imports: [
     BrowserModule,

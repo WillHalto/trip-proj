@@ -6,6 +6,7 @@ import { MemberService } from "../../services/member.service";
 import { Trip } from "../../models/trip";
 import { Member } from "src/app/models/member";
 import { Expense } from "src/app/models/expense";
+import { Settlement } from "src/app/models/settlement";
 
 @Component({
   selector: "app-trip-details",
@@ -21,6 +22,8 @@ export class TripDetailsComponent implements OnInit {
 
   isAddingExpense: boolean;
   isAddingMember: boolean;
+  isTripSettled: boolean;
+  settlements: Settlement[];
 
   constructor(
     private tripService: TripsService,
@@ -28,28 +31,18 @@ export class TripDetailsComponent implements OnInit {
     private memberService: MemberService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.settlements = [];
+  }
 
   ngOnChanges() {
     this.isAddingExpense = false;
     this.isAddingMember = false;
+    this.isTripSettled = false;
   }
 
   addMember() {
     this.isAddingMember = true;
-  }
-
-  onAddingMember(newMember: Member) {
-    this.memberService.addMember(this.currentTrip, newMember).subscribe(
-      res => {
-        console.log("successfully added the member");
-        this.currentTrip.members.push(newMember);
-      },
-      error => {
-        console.log("fail");
-        console.log(error);
-      }
-    );
   }
 
   removeMember(member: Member) {
@@ -68,19 +61,6 @@ export class TripDetailsComponent implements OnInit {
 
   addExpense() {
     this.isAddingExpense = true;
-  }
-
-  onAddingExpense(newExpense: Expense) {
-    this.expenseService.addExpense(this.currentTrip, newExpense).subscribe(
-      res => {
-        console.log("successfully added the expense");
-        this.currentTrip.expenses.push(newExpense);
-      },
-      error => {
-        console.log("fail");
-        console.log(error);
-      }
-    );
   }
 
   removeExpense(expense: Expense) {
@@ -110,17 +90,11 @@ export class TripDetailsComponent implements OnInit {
     );
   }
 
-  onClosingMemberForm() {
-    this.isAddingMember = false;
-  }
-
-  onClosingExpenseForm() {
-    this.isAddingExpense = false;
-  }
-
   settleUp() {
     this.tripService.settleUp(this.currentTrip).subscribe(
       res => {
+        this.isTripSettled = true;
+        this.settlements = res as Settlement[];
         console.log("Settlement successful");
       },
       error => {
@@ -128,5 +102,39 @@ export class TripDetailsComponent implements OnInit {
         alert("Something went wrong.");
       }
     );
+  }
+
+  //callbacks from child component's event
+  onAddingMember(newMember: Member) {
+    this.memberService.addMember(this.currentTrip, newMember).subscribe(
+      res => {
+        console.log("successfully added the member");
+        this.currentTrip.members.push(newMember);
+      },
+      error => {
+        console.log("fail");
+        console.log(error);
+      }
+    );
+  }
+
+  onAddingExpense(newExpense: Expense) {
+    this.expenseService.addExpense(this.currentTrip, newExpense).subscribe(
+      res => {
+        console.log("successfully added the expense");
+        this.currentTrip.expenses.push(newExpense);
+      },
+      error => {
+        console.log("fail");
+        console.log(error);
+      }
+    );
+  }
+  onClosingMemberForm() {
+    this.isAddingMember = false;
+  }
+
+  onClosingExpenseForm() {
+    this.isAddingExpense = false;
   }
 }
