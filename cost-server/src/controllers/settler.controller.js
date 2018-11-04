@@ -1,15 +1,28 @@
 //controller for settling shared expenses
 
-let Models = require("../models/trip.model");
-let TripService = require("../services/trip.service");
-
-const owes = {};
 function settleTrip(trip) {
+  const ledger = {};
+  let totalCost = 0;
+
+  ledger[trip.owner.name] = 0;
   trip.members.forEach(member => {
-    owes[member.name] = 0;
+    ledger[member.name] = 0;
   });
-  console.log(owes);
-  return owes;
+
+  trip.expenses.forEach(expense => {
+    ledger[expense.paidBy.name] += expense.amount;
+    expense.participants.forEach(participant => {
+      ledger[participant.name] -= getCostPerPerson(expense);
+    });
+    totalCost += expense.amount;
+  });
+
+  ledger.totalCost = totalCost;
+  return ledger;
+}
+
+function getCostPerPerson(expense) {
+  return expense.amount / expense.participants.length;
 }
 
 module.exports.settleTrip = settleTrip;
