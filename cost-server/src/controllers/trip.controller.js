@@ -80,6 +80,17 @@ async function deleteMember(req, res) {
   }
 }
 
+async function settleUp(req, res) {
+  let trip = buildTripFromRequest(req);
+  try {
+    let settledTrip = await TripService.settleTrip(trip);
+    res.send(settledTrip);
+  } catch (err) {
+    console.log(err);
+    res.status(418).send(err);
+  }
+}
+
 function buildTripFromRequest(req) {
   let trip = new Models.Trip(req.body.trip);
   let ownerModel = new Models.Member({
@@ -98,3 +109,4 @@ module.exports.deleteExpense = deleteExpense;
 module.exports.deleteTrip = deleteTrip;
 module.exports.addMember = addMember;
 module.exports.deleteMember = deleteMember;
+module.exports.settleUp = settleUp;
