@@ -40,7 +40,7 @@ async function addExpense(req, res) {
 
 async function deleteExpense(req, res) {
   let trip = buildTripFromRequest(req);
-  let expense = new Models.Member(req.body.expense);
+  let expense = new Models.Expense(req.body.expense);
   let success = await TripService.deleteExpense(trip, expense);
   if (success) {
     res.status(200).send();

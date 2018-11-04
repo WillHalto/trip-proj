@@ -16,7 +16,7 @@ router.post("/api/login", async function(req, res, next) {
   let payload = await verifyToken(req.body.idtoken).catch(console.error);
   if (payload["exp"] > Math.round(date.getTime() / 1000)) {
     res.cookie("IDTOKEN", req.body.idtoken, { httpOnly: true });
-    res.send();
+    res.status(200).send();
   } else {
     res.status(401).send();
   }
