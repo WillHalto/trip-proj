@@ -2,6 +2,7 @@
 
 let Models = require("../models/trip.model");
 let TripService = require("../services/trip.service");
+let settler = require("../controllers/settler.controller");
 
 /**
  * Retrieves all stored trips for the given user.
@@ -83,7 +84,7 @@ async function deleteMember(req, res) {
 async function settleUp(req, res) {
   let trip = buildTripFromRequest(req);
   try {
-    let settledTrip = await TripService.settleTrip(trip);
+    let settledTrip = await settler.settleTrip(trip);
     res.send(settledTrip);
   } catch (err) {
     console.log(err);

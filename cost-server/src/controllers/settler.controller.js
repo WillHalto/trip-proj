@@ -8,6 +8,8 @@ function settleTrip(trip) {
   trip.members.forEach(member => {
     owes[member.name] = 0;
   });
-
+  console.log(owes);
   return owes;
 }
+
+module.exports.settleTrip = settleTrip;
