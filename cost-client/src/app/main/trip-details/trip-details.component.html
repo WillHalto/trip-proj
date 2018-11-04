@@ -16,7 +16,7 @@
 
   <br>
 
-  <div *ngIf=!isTripSettled class=expenses>
+  <div class=expenses>
     <h4>Expenses</h4>
     <p *ngIf="!currentTrip.expenses?.length">There is no expense for this trip yet.</p>
     <li *ngFor="let expense of currentTrip.expenses">
