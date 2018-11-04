@@ -94,7 +94,7 @@ export class TripDetailsComponent implements OnInit {
     this.tripService.settleUp(this.currentTrip).subscribe(
       res => {
         this.isTripSettled = true;
-        this.settlements = res as Settlement[];
+        this.settlements = this.buildSettlements(res);
         console.log("Settlement successful");
       },
       error => {
@@ -136,5 +136,16 @@ export class TripDetailsComponent implements OnInit {
 
   onClosingExpenseForm() {
     this.isAddingExpense = false;
+  }
+
+  //helper
+  buildSettlements(res: object) {
+    let settlements: Settlement[] = [];
+    let keys = Object.keys(res);
+    keys.forEach(key => {
+      let settlement = new Settlement(key, res[key].toFixed(2));
+      settlements.push(settlement);
+    });
+    return settlements;
   }
 }

@@ -1,9 +1,17 @@
 <h4>Expense Settlements</h4>
-<li *ngFor="let settlement of settlements">
-  <span *ngIf="settlement.amount>0">
-    {{settlement.name}} pays {{settlement.amount}}.
-  </span>
-  <span *ngIf="0>settlement.amount">
-    {{settlement.name}} receives {{settlement.amount}}.
-  </span>
-</li>
+<div *ngFor="let settlement of settlements">
+  <div *ngIf="settlement.name == 'totalCost'">
+    <li>
+      Total cost is ${{settlement.amount}}.
+    </li>
+  </div>
+  <div *ngIf="settlement.name != 'totalCost'">
+    <li *ngIf="settlement.amount>0">
+      {{settlement.name}} pays ${{settlement.amount}}.
+    </li>
+    <li *ngIf="0>settlement.amount">
+      {{settlement.name}} receives ${{-settlement.amount}}.
+    </li>
+  </div>
+
+</div>
