@@ -1,0 +1,27 @@
+<form [formGroup]="newExpenseForm" (ngSubmit)="onSubmit()">
+  <label>
+    Title:
+    <input type="text" formControlName="title" required>
+  </label>
+  <label>
+    Amount:
+    <input type="number" formControlName="amount" required>
+  </label>
+  <label>
+    Who paid?
+    <select formControlName="paidBy" required>
+      <option *ngFor="let member of members" [ngValue]="member">{{member.name}}</option>
+    </select>
+  </label>
+
+  <label>
+    Who participated?
+    <select formControlName="participants" required multiple>
+      <option *ngFor="let member of members" [ngValue]="member">{{member.name}}</option>
+    </select>
+  </label>
+
+
+  <button type="submit" [disabled]="!newExpenseForm.valid">Add</button>
+  <button type="button" (click)="onCancel()">Cancel</button>
+</form>

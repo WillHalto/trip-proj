@@ -1,0 +1,27 @@
+<div id="my-signin2"></div>
+<div class='userInfo' *ngIf="userProfile">
+    <div>Welcome {{userProfile?.getName()}}! </div>
+    <img class='img-thumbnail' src={{userProfile?.getImageUrl()}} alt="Profile Pic">
+</div>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button
+        class="btn btn-primary btn-margin"
+        routerLink="/">
+          Home
+      </button>
+      <button
+        class="btn btn-primary btn-margin"
+        routerLink="/postlogin">
+          Profile
+      </button>
+      <button
+        class="btn btn-primary btn-margin"
+        (click)="logout()">
+          Log Out
+      </button>
+
+    </div>
+  </div>
+</nav>
